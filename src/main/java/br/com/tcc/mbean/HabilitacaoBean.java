@@ -52,18 +52,17 @@ public class HabilitacaoBean implements Serializable {
 		}
 	}
 	
-	public void salvar(){
+	public String salvar(){
 		try {
-			novo();
-			habilitacao.setDescricao("telescopio");
-			habilitacao.setNome("lUA");
-			
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 			habilitacaoDAO.merge(habilitacao);
+			listar();
+			return "/pages/listHabilitacaoAux.xhtml?faces-redirect=true";
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a habilitação");
 			erro.printStackTrace();
 		}
+		return "";
 	}
 	
 	public void excluir(Habilitacao habilitacao){
@@ -86,6 +85,12 @@ public class HabilitacaoBean implements Serializable {
 	public String prepararCadastro(){
 		habilitacao = new Habilitacao();
 		return "/pages/habilitacao.xhtml?faces-redirect=true";
+	}
+	
+	public String cancelarCadastro(){
+		habilitacao = null;
+		listar();
+		return "/pages/listHabilitacaoAux.xhtml?faces-redirect=true";
 	}
 	
 	public Habilitacao getHabilitacao() {
