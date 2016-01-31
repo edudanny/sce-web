@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/template/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Lista de Habilitações
+			</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#">
+						<i class="fa fa-dashboard"></i>
+						Início
+					</a>
+				</li>
+				<li class="active">Habilitação</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<h:form id="formListagem">
+				<div class="input-group-sce input-group-sm">				
+					<h:inputText id="pesquisa" styleClass="form-control-sce" 
+								 value="#{habilitacaoBean.habilitacao.nome}" 
+								 pt:placeholder="Pesquisar Habilitação">
+								 
+						<f:ajax listener="#{habilitacaoBean.pesquisar}" 
+								event="keyup" 
+								render=":formListagem:tabela"></f:ajax>
+								 
+					</h:inputText>
+					<span class="input-group-btn">
+						<h:commandButton class="btn btn-info btn-flat" 
+										 value="Pesquisar" 
+										 action="#{habilitacaoBean.pesquisar}"/>
+					</span>
+				</div><!-- Your Page Content Here -->	
+				<div class="col-md-12-sce">
+					<p:dataTable styleClass="table table-bordered" id="tabela"
+								 paginator="true" paginatorPosition="bottom"
+								 value="#{habilitacaoBean.habilitacoes}" var="hab"
+								 rows="10">
+						<p:column sortBy="#{hab.nome}">
+							<f:facet name="header">
+								<h:outputText value="Nome"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{hab.nome}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Descrição"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{hab.descricao}"></h:outputText>
+						</p:column>
+						<p:column width="200">
+							<f:facet name="header">
+								<h:outputText value="Ações"/>
+							</f:facet>
+							<h:commandLink onclick="return confirm('Tem certeza que deseja excluir?')"
+										   actionListener="#{habilitacaoBean.excluir(hab)}" value="Excluir |"/>
+							<h:commandLink onclick="return confirm('Tem certeza que deseja excluir?')"
+										   actionListener="#{habilitacaoBean.excluir(hab)}" value="| Editar">			
+							</h:commandLink>
+						</p:column>
+					</p:dataTable>
+					<h:commandButton class="btn-sce btn-primary" value="Novo" 
+									 action="#{habilitacaoBean.prepararCadastro}"/>
+				</div>
+			</h:form>
+		</section><!-- /.content -->
+	</ui:define>
+</ui:composition>

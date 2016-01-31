@@ -20,8 +20,8 @@ public class HabilitacaoBean implements Serializable {
 
 	private Habilitacao habilitacao;
 	private List<Habilitacao> habilitacoes;
-	private List<Habilitacao> pesquisa = new ArrayList<Habilitacao>();
-	private List<Habilitacao> habilitacaoAux = new ArrayList<Habilitacao>();
+	private List<Habilitacao> pesquisa;
+	private List<Habilitacao> habilitacaoAux;
 	
 	@PostConstruct
 	public void listar(){
@@ -66,14 +66,11 @@ public class HabilitacaoBean implements Serializable {
 		}
 	}
 	
-	public void excluir(){
+	public void excluir(Habilitacao habilitacao){
 		try {
-			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
-			novo();
-			habilitacao = habilitacaoDAO.buscar(2L);
-			
-			
+			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();			
 			habilitacaoDAO.excluir(habilitacao);
+			listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a habilitação");
 			erro.printStackTrace();
@@ -81,7 +78,9 @@ public class HabilitacaoBean implements Serializable {
 	}
 	
 	public void novo(){
-		habilitacao = new Habilitacao();	
+		habilitacao = new Habilitacao();
+		pesquisa = new ArrayList<Habilitacao>();
+		habilitacaoAux = new ArrayList<Habilitacao>();
 	}
 
 	public String prepararCadastro(){

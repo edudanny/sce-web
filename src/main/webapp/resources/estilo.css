@@ -1,5 +1,20 @@
 @CHARSET "UTF-8";
 
 .ui-widget, .ui-widget .ui-widget {
-	font-size: 95% !important;
+	font-size: 90% !important;
+}
+
+.ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th {
+	padding: 4px 10px !important;
+    overflow: hidden !important;
+    border-width: 1px !important;
+    border-style: solid !important;
+    background: #ffffff !important;
+}
+
+.ui-paginator {
+    margin: 0px;
+    text-align: left;
+    padding: 2px;
+    background: #ffffff;
 }

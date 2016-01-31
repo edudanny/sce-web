@@ -32,7 +32,9 @@
 								 value="#{habilitacaoBean.habilitacao.nome}" 
 								 pt:placeholder="Pesquisar Habilitação" >
 								 
-						<f:ajax listener="#{habilitacaoBean.pesquisar}" event="keyup" render=":formListagem:tabela"/>
+						<f:ajax listener="#{habilitacaoBean.pesquisar}" 
+								event="keyup" 
+								render=":formListagem:tabela"></f:ajax>
 								 
 					</h:inputText>
 					<span class="input-group-btn">
@@ -48,9 +50,11 @@
 										 styleClass="table table-bordered" 
 										 var="hab" 
 										 value="#{habilitacaoBean.habilitacoes}" 
-										 rows="6">
+										 rows="10">
 									
-									<t:column>
+									<t:column id="ordenacao" sortable="true" defaultSorted="true">
+										<f:ajax event="click" 
+												render=":formListagem:tabela:ordenacao"></f:ajax>
 										<f:facet name="header">
 											<h:outputText value="Nome"/>
 										</f:facet>

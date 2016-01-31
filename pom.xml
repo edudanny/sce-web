@@ -69,11 +69,23 @@
 		</dependency>
 		
 		<!-- JSF -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>2.2.12</version>
+		</dependency> -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.12</version>
 		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.2.12</version>
+		</dependency>
+
+		
 		
 		<!-- PrimeFaces -->
 		<dependency>
@@ -116,12 +128,11 @@
 			<version>2.4</version>
 		</dependency>
 		
+		<!-- tomahawk -->
 		<dependency>
 			<groupId>org.apache.myfaces.tomahawk</groupId>
-			<artifactId>tomahawk</artifactId>
+			<artifactId>tomahawk21</artifactId>
 			<version>1.1.14</version>
 		</dependency>
-		
-		
 	</dependencies>
 </project>
