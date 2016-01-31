@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/template/modelo.xhtml">
+
+	<ui:define name="conteudo">
+	<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Lista de Habilitações
+			</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#"><i class="fa fa-dashboard"></i>Início</a>
+				</li>
+				<li class="active">Habilitação</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<h:form id="formListagem">
+				<div class="input-group-sce input-group-sm">				
+					<h:inputText id="pesquisa" styleClass="form-control-sce" 
+								 value="#{habilitacaoBean.habilitacao.nome}" 
+								 pt:placeholder="Pesquisar Habilitação" >
+								 
+						<f:ajax listener="#{habilitacaoBean.pesquisar}" event="keyup" render=":formListagem:tabela"/>
+								 
+					</h:inputText>
+					<span class="input-group-btn">
+						<h:commandButton class="btn btn-info btn-flat" 
+										 value="Pesquisar" 
+										 action="#{habilitacaoBean.pesquisar}" />
+					</span>
+				</div><!-- Your Page Content Here -->			
+				<div class="col-md-12-sce">
+					<div class="box">
+						<div class="box-body">
+							<t:dataTable id="tabela"
+										 styleClass="table table-bordered" 
+										 var="hab" 
+										 value="#{habilitacaoBean.habilitacoes}" 
+										 rows="6">
+									
+									<t:column>
+										<f:facet name="header">
+											<h:outputText value="Nome"/>
+										</f:facet>
+										<h:outputText value="#{hab.nome}" />
+									</t:column>
+									
+									<t:column>
+										<f:facet name="header">
+											<h:outputText value="Descrição"/>
+										</f:facet>
+										<h:outputText value="#{hab.descricao}" />
+									</t:column>
+									
+									<t:column>
+										<f:facet name="header">
+											<h:outputText value="Ações"/>
+										</f:facet>
+										
+										<h:commandLink>
+											<h:commandButton class="btn btn-app" 
+										 					 value="Pesquisar" 
+										 					 action="#{habilitacaoBean.listar}"
+										 					 styleClass="fa fa-edit" />
+										</h:commandLink>
+									</t:column>
+								</t:dataTable>
+						</div><!-- /.box-body -->                
+					</div><!-- /.box -->
+					<h:commandButton class="btn-sce btn-primary" 
+										 value="Novo" action="#{habilitacaoBean.prepararCadastro}" />
+				</div>
+			</h:form>
+		</section><!-- /.content -->
+	</ui:define>
+</ui:composition>
