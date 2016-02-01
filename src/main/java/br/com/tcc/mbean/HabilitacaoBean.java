@@ -76,6 +76,11 @@ public class HabilitacaoBean implements Serializable {
 		}
 	}
 	
+	public String editar(Habilitacao hab){
+		habilitacao = hab;
+		return "/pages/habilitacao.xhtml?faces-redirect=true";
+	}
+	
 	public void novo(){
 		habilitacao = new Habilitacao();
 		pesquisa = new ArrayList<Habilitacao>();

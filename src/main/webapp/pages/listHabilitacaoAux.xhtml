@@ -69,8 +69,7 @@
 							</f:facet>
 							<h:commandLink onclick="return confirm('Tem certeza que deseja excluir?')"
 										   actionListener="#{habilitacaoBean.excluir(hab)}" value="Excluir |"/>
-							<h:commandLink onclick="return confirm('Tem certeza que deseja excluir?')"
-										   actionListener="#{habilitacaoBean.excluir(hab)}" value="| Editar">			
+							<h:commandLink actionListener="#{habilitacaoBean.editar(hab)}" value="| Editar">			
 							</h:commandLink>
 						</p:column>
 					</p:dataTable>
