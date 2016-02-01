@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 
 import org.omnifaces.util.Messages;
@@ -15,7 +16,7 @@ import br.com.tcc.model.Habilitacao;
 
 @SuppressWarnings("serial")
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class HabilitacaoBean implements Serializable {
 
 	private Habilitacao habilitacao;

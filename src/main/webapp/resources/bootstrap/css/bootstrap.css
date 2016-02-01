@@ -6037,6 +6037,13 @@ button.close {
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
+
+.modal-footer-sce {
+  padding: 15px;
+  text-align: right;
+  width: 102%;
+}
+
 .modal-footer .btn + .btn {
   margin-bottom: 0;
   margin-left: 5px;

@@ -168,6 +168,7 @@ h6,
 /* General Links */
 a {
   color: #3c8dbc;
+  padding-left: 26px;
 }
 a:hover,
 a:active,
@@ -2231,6 +2232,23 @@ a:focus {
   background-color: #3c8dbc;
   border-color: #367fa9;
 }
+
+.btn-primary-sce {
+  background-color: #3c8dbc;
+  border-color: #367fa9;
+  margin-left: 6px;
+  width: 14%;
+  color: #FFFFFF;
+}
+
+.btn-primary-sce-novo {
+  background-color: #3c8dbc;
+  border-color: #367fa9;
+  margin-left: 6px;
+  width: 9%;
+  color: #FFFFFF;
+}
+
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.hover {

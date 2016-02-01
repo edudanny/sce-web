@@ -48,6 +48,7 @@
 				</div><!-- Your Page Content Here -->	
 				<div class="col-md-12-sce">
 					<p:dataTable styleClass="table table-bordered" id="tabela"
+								 emptyMessage="Nenhum registro encontrado."
 								 paginator="true" paginatorPosition="bottom"
 								 value="#{habilitacaoBean.habilitacoes}" var="hab"
 								 rows="10">
@@ -68,14 +69,20 @@
 								<h:outputText value="Ações"/>
 							</f:facet>
 							<h:commandLink>
-								<h:commandLink onclick="return confirm('Tem certeza que deseja excluir?')"
-										   actionListener="#{habilitacaoBean.excluir(hab)}" value="Excluir |"/>
-								<h:commandLink action="#{habilitacaoBean.editar(hab)}" value="| Editar"/>
+								<h:commandLink action="#{habilitacaoBean.editar(hab)}">
+									<h:graphicImage url="/resources/img/edit_32x32.png" height="25" width="25" title="Clique para Editar" />
+								</h:commandLink>
+								<h:commandLink  onclick="return confirm('Tem certeza que deseja excluir?')"
+												actionListener="#{habilitacaoBean.excluir(hab)}">
+									<h:graphicImage url="/resources/img/delete_32x32.png" height="25" width="25" title="Clique para Excluir" />
+								</h:commandLink>
 							</h:commandLink>
 						</p:column>
 					</p:dataTable>
-					<h:commandButton class="btn-sce btn-primary" value="Novo" 
-									 action="#{habilitacaoBean.prepararCadastro}"/>
+					
+					<h:commandButton class="btn btn-primary-sce-novo" value="Novo" 
+									 action="#{habilitacaoBean.prepararCadastro}" style="margin-left: 91%"/>
+			    
 				</div>
 			</h:form>
 		</section><!-- /.content -->
