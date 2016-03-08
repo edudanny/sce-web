@@ -1,31 +1,52 @@
 package br.com.tcc.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="habilitacao")
-public class Habilitacao extends GenericDomain {
+@Table(name="prohabilitacao")
+public class Habilitacao implements Serializable {
 	
-	@Column(length=45,nullable=false)
-	private String nome;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(length = 2)
+	private Integer prohabcodigo;
 	
-	@Column(length=45,nullable=false)
-	private String descricao;
+	@Column(length=15,nullable=false, unique = true)
+	private String prohabnome;
 	
-	public String getNome() {
-		return nome;
+	@Column(length=255,nullable=false)
+	private String prohabdesc;
+	
+	public Integer getProhabcodigo() {
+		return this.prohabcodigo;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	
+	public void setProhabcodigo(Integer prohabcodigo) {
+		this.prohabcodigo = prohabcodigo;
 	}
-	public String getDescricao() {
-		return descricao;
+	
+	public String getProhabnome() {
+		return this.prohabnome;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	
+	public void setProhabnome(String prohabnome) {
+		this.prohabnome = prohabnome;
+	}
+	
+	public String getProhabdesc(){
+		return this.prohabdesc;
+	}
+	
+	public void setProhabdesc(String prohabdesc){
+		this.prohabdesc = prohabdesc;
 	}
 	
 }

@@ -9,7 +9,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
-	template="/template/modelo.xhtml">
+	template="/pages/template/modelo.xhtml">
 
 	<ui:define name="conteudo">
 		<!-- Content Header (Page header) -->
@@ -32,7 +32,7 @@
 			<h:form id="formListagem">
 				<div class="input-group-sce input-group-sm">				
 					<h:inputText id="pesquisa" styleClass="form-control-sce" 
-								 value="#{habilitacaoBean.habilitacao.nome}" 
+								 value="#{habilitacaoBean.habilitacao.prohabnome}" 
 								 pt:placeholder="Pesquisar Habilitação">
 								 
 						<f:ajax listener="#{habilitacaoBean.pesquisar}" 
@@ -40,29 +40,26 @@
 								render=":formListagem:tabela"></f:ajax>
 								 
 					</h:inputText>
-					<span class="input-group-btn">
-						<h:commandButton class="btn btn-info btn-flat" 
-										 value="Pesquisar" 
-										 action="#{habilitacaoBean.pesquisar}"/>
-					</span>
-				</div><!-- Your Page Content Here -->	
+					
+				</div><!-- Your Page Content Here -->
+					
 				<div class="col-md-12-sce">
 					<p:dataTable styleClass="table table-bordered" id="tabela"
 								 emptyMessage="Nenhum registro encontrado."
 								 paginator="true" paginatorPosition="bottom"
 								 value="#{habilitacaoBean.habilitacoes}" var="hab"
 								 rows="10">
-						<p:column sortBy="#{hab.nome}">
+						<p:column sortBy="#{hab.prohabnome}">
 							<f:facet name="header">
-								<h:outputText value="Nome"></h:outputText>
+								<h:outputText value="Habilitação"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{hab.nome}"></h:outputText>
+							<h:outputText value="#{hab.prohabnome}"></h:outputText>
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Descrição"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{hab.descricao}"></h:outputText>
+							<h:outputText value="#{hab.prohabdesc}"></h:outputText>
 						</p:column>
 						<p:column width="200">
 							<f:facet name="header">

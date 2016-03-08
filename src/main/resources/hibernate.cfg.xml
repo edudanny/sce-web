@@ -5,7 +5,7 @@
 	<session-factory>
 		<!-- Configurações de Conexão com o Banco de Dados -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/controle_escolar</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/free</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 		
@@ -25,12 +25,16 @@
 		<property name="show_sql">true</property>
 		
 		<!-- Cria as tabelas do banco de dados -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">validate</property>
 		
 		<property name="show_sql">true</property>
   		<property name="format_sql">true</property>
 		
 		<!-- Mapeamento das entidades-->
 		<mapping class="br.com.tcc.model.Habilitacao"/>
+		<mapping class="br.com.tcc.model.AnoLetivo"/>
+		<mapping class="br.com.tcc.model.Secretaria"/>
+		<mapping class="br.com.tcc.model.Agenda"/>
+		
 	</session-factory>
 </hibernate-configuration>

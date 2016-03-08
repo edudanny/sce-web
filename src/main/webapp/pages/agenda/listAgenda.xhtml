@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/pages/template/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Lista de Horários
+			</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#">
+						<i class="fa fa-dashboard"></i>
+						Início
+					</a>
+				</li>
+				<li class="active">Agenda</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<h:form id="formListagem">
+				<div class="input-group-sce input-group-sm">
+					<label>Data</label>	
+					<h:inputText id="pesquisa" styleClass="form-control-sce" 
+								 value="#{agendaBean.agenda.agedthr}" 
+								 pt:placeholder="dd/mm/aaaa">
+								 
+					</h:inputText>
+				</div><!-- Your Page Content Here -->
+					
+				<div class="col-md-12-sce">
+					<p:dataTable styleClass="table table-bordered" id="tabela"
+								 emptyMessage="Nenhum registro encontrado."
+								 value="#{agendaBean.listAgendas}" var="age"
+								 rows="10">
+						<p:column sortBy="#{age.agedthr}">
+							<f:facet name="header">
+								<h:outputText value="Hora"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{age.agedthr}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nome"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{age.ageresnome}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="CPF"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{age.agerescpf}"></h:outputText>
+						</p:column>
+						<p:column width="200">
+							<f:facet name="header">
+								<h:outputText value="Status"/>
+							</f:facet>
+							<h:selectManyCheckbox value=""/>
+							<h:selectManyCheckbox value=""/>
+						</p:column>
+					</p:dataTable>
+					
+					<h:commandButton class="btn btn-primary-sce-novo" value="Novo" 
+									 action="#{habilitacaoBean.prepararCadastro}" style="margin-left: 91%"/>
+			    
+				</div>
+			</h:form>
+		</section><!-- /.content -->
+	</ui:define>
+</ui:composition>

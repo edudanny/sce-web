@@ -39,5 +39,9 @@
      <listener>
     	<listener-class>br.com.tcc.utils.HibernateContexto</listener-class>
     </listener> 
+    
+    <welcome-file-list>
+		<welcome-file>pages/index.xhtml</welcome-file>
+	</welcome-file-list>
 	    
 </web-app>

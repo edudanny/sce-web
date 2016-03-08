@@ -18,22 +18,22 @@
 		  name="viewport" />
 
 	<!-- Bootstrap 3.3.5 -->
-	<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/bootstrap/css/bootstrap.css" type="text/css" />
 
 	<!-- Font Awesome -->
 	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
 
 	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"  type="text/css"/>
 
 	<!-- Theme style -->
-	<link rel="stylesheet" href="../resources/dist/css/AdminLTE.css" />
-	<link rel="stylesheet" href="../resources/dist/css/skins/skin-blue.css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/dist/css/AdminLTE.css" type="text/css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/dist/css/skins/skin-blue.css" type="text/css"/>
 	
-	<link rel="stylesheet" href="../resources/estilo.css" />
+	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/estilo.css" type="text/css" />
 </h:head>
-<h:body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 		<!-- Main Header -->
 		<header class="main-header"> 
@@ -65,7 +65,7 @@
 							<a href="#" class="dropdown-toggle" 
 							   data-toggle="dropdown"> 
 							   <!-- The user image in the navbar--> 
-							   <img src="../resources/dist/img/eu.jpg" 
+							   <img src="#{facesContext.externalContext.request.contextPath}/resources/dist/img/eu.jpg" 
 							   		class="user-image" alt="User Image" /> 
 							   		<!-- hidden-xs hides the username on small devices so only the image appears. -->
 								<span class="hidden-xs">Eduardo Tavares</span>
@@ -119,7 +119,7 @@
 				<!-- Sidebar user panel (optional) -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<span class="logo-lg">Possivel Logo</span>
+						<span class="logo-lg" style="color: white">Possível Logo</span>
 					</div>
 					<div class="pull-left info">
 						<!-- possivel logo -->
@@ -259,15 +259,15 @@
 	<!-- ./wrapper -->
 	<!-- REQUIRED JS SCRIPTS -->
 	<!-- jQuery 2.1.4 -->
-	<script src="../resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 	<!-- Bootstrap 3.3.5 -->
-	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="../resources/dist/js/app.min.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.request.contextPath}/resources/dist/js/app.min.js"></script>
 	<!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. Slimscroll is required when using the
          fixed layout. 
 	-->
-</h:body>
+</body>
 </html>
