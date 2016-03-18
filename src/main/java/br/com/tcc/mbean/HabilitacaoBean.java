@@ -23,8 +23,7 @@ public class HabilitacaoBean implements Serializable {
 	private List<Habilitacao> pesquisa;
 	private List<Habilitacao> habilitacaoAux;
 	
-	@PostConstruct
-	public void listar(){
+	public String listar(){
 		novo();
 		try {
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
@@ -35,6 +34,7 @@ public class HabilitacaoBean implements Serializable {
 			erro.printStackTrace();
 		}
 		
+		return "/pages/habilitacao/listHabilitacaoAux.xhtml?faces-redirect=true";
 	}
 	
 	public void pesquisar(){
@@ -85,6 +85,7 @@ public class HabilitacaoBean implements Serializable {
 		habilitacao = new Habilitacao();
 		pesquisa = new ArrayList<Habilitacao>();
 		habilitacaoAux = new ArrayList<Habilitacao>();
+		habilitacoes = new ArrayList<Habilitacao>();
 	}
 
 	public String prepararCadastro(){

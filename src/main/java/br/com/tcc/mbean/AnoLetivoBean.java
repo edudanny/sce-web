@@ -23,8 +23,7 @@ public class AnoLetivoBean implements Serializable{
 	private List<AnoLetivo> pesquisa;
 	private List<AnoLetivo> anoAux;	
 	
-	@PostConstruct
-	public void listar(){
+	public String listar(){
 		listAno = new ArrayList<AnoLetivo>();
 		try {
 			AnoLetivoDAO anoletivoDAO = new AnoLetivoDAO();
@@ -34,6 +33,7 @@ public class AnoLetivoBean implements Serializable{
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os Anos Letivos");
 			erro.printStackTrace();
 		}
+		return "/pages/anoLetivo/listAnoLetivo.xhtml?faces-redirect=true";
 		
 	}
 	

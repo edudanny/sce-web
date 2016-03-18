@@ -25,8 +25,7 @@ public class SecretariaBean implements Serializable{
 	private List<Secretaria> pesquisa;
 	private List<Secretaria> listSecretariaAux;
 	
-	@PostConstruct
-	public void listar(){
+	public String listar(){
 		novo();
 		try{
 			SecretariaDAO secretariaDAO = new SecretariaDAO();
@@ -36,6 +35,7 @@ public class SecretariaBean implements Serializable{
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os Anos Letivos");
 			erro.printStackTrace();
 		}
+		return "/pages/secretaria/listSecretaria.xhtml?faces-redirect=true";
 	}
 	
 	public void pesquisar(){

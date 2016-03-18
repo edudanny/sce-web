@@ -113,6 +113,7 @@
 			</nav> 
 		</header>
 		<!-- Left side column. contains the logo and sidebar -->
+		<h:form id="formMenu">
 		<aside class="main-sidebar"> 
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar"> 
@@ -137,22 +138,22 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<h:commandLink action="#{habilitacaoBean.listar}">
 							<i class="fa fa-link"></i> 
 							<span>Habilitação</span>
-						</a>
+						</h:commandLink>
 					</li>
 					<li>
-						<a href="#">
+						<h:commandLink action="#{secretariaBean.listar}">
 							<i class="fa fa-link"></i> 
-							<span>Professor</span>
-						</a>
+							<span>Secretária</span>
+						</h:commandLink>
 					</li>
 					<li>
-						<a href="#">
+						<h:commandLink action="#{anoLetivoBean.listar}">
 							<i class="fa fa-link"></i> 
-							<span>Pais</span>
-						</a>
+							<span>Anos Letivos</span>
+						</h:commandLink>
 					</li>
 					<li>
 						<a href="#">
@@ -165,6 +166,7 @@
 			</section> 
 			<!-- /.sidebar --> 
 		</aside>
+		</h:form>
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Parte dinâmica do JSF -->
