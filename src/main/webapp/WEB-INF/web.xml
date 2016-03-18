@@ -18,7 +18,7 @@
 		<param-value>glass-x</param-value>
 	</context-param> -->
 	
-	Definição do Mecanismo de Upload
+	<!-- Definição do Mecanismo de Upload -->
 	<context-param>
 		<param-name>primefaces.UPLOADER</param-name>
 		<param-value>native</param-value>

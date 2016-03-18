@@ -1,6 +1,7 @@
 package br.com.tcc.mbean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +25,7 @@ public class AnoLetivoBean implements Serializable{
 	
 	@PostConstruct
 	public void listar(){
+		listAno = new ArrayList<AnoLetivo>();
 		try {
 			AnoLetivoDAO anoletivoDAO = new AnoLetivoDAO();
 			listAno = anoletivoDAO.listar();

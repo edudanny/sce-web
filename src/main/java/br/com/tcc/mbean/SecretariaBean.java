@@ -96,7 +96,7 @@ public class SecretariaBean implements Serializable{
 	public String cancelarCadastro(){
 		secretaria = null;
 		listar();
-		return "/pages/secretaria/listSecretariaAux.xhtml?faces-redirect=true";
+		return "/pages/secretaria/listSecretaria.xhtml?faces-redirect=true";
 	}
 	
 	public Secretaria getSecretaria(){

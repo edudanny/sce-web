@@ -9,9 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
 @SuppressWarnings("serial")
-@Table(name="secretaria")
+@Entity
+@Table(name="secretarias")
 public class Secretaria implements Serializable{
 	
 	@Id

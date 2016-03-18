@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="prohabilitacao")
+@Table(name="prohabilitacoes")
 public class Habilitacao implements Serializable {
 	
 	@Id

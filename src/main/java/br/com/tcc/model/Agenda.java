@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Table(name = "agenda")
 @SuppressWarnings("serial")
+@Table(name = "agenda")
 @Entity
 public class Agenda implements Serializable{
 	

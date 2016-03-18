@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="ano")
+@Table(name="anos")
 public class AnoLetivo implements Serializable {
 	
 	@Id
