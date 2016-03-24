@@ -9,6 +9,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:o="http://omnifaces.org/ui"
 	template="/pages/template/modelo.xhtml">
 
 	<ui:define name="conteudo">
@@ -30,6 +31,9 @@
 		<!-- Main content -->
 		<section class="content">
 			<h:form id="formListagem">
+
+            	<h:outputLabel id="msg" value="#{habilitacaoBean.msg}" />
+
 				<div class="input-group-sce input-group-sm">				
 					<h:inputText id="pesquisa" styleClass="form-control-sce" 
 								 value="#{habilitacaoBean.habilitacao.prohabnome}" 
@@ -37,7 +41,7 @@
 								 
 						<f:ajax listener="#{habilitacaoBean.pesquisar}" 
 								event="keyup" 
-								render=":formListagem:tabela"></f:ajax>
+								render=":formListagem:tabela :formListagem:msg"></f:ajax>
 								 
 					</h:inputText>
 					

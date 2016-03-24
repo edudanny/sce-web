@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.omnifaces.util.Messages;
 
@@ -22,10 +22,15 @@ public class HabilitacaoBean implements Serializable {
 	private List<Habilitacao> habilitacoes;
 	private List<Habilitacao> pesquisa;
 	private List<Habilitacao> habilitacaoAux;
+	private boolean salvo;
+	private String msg;
 	
 	public String listar(){
 		novo();
 		try {
+			if (salvo) {
+				msg = "Habilitação salva com sucesso";
+			}
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 			habilitacoes = habilitacaoDAO.listar();
 			pesquisa = habilitacoes;
@@ -34,10 +39,11 @@ public class HabilitacaoBean implements Serializable {
 			erro.printStackTrace();
 		}
 		
-		return "/pages/habilitacao/listHabilitacaoAux.xhtml?faces-redirect=true";
+		return "/pages/habilitacao/listHabilitacao.xhtml?faces-redirect=true";
 	}
 	
 	public void pesquisar(){
+		msg = new String();
 		if (!habilitacao.getProhabnome().equals("")){
 			for (Habilitacao habi : pesquisa) {
 				if (habi.getProhabnome().toLowerCase().contains(habilitacao.getProhabnome().toLowerCase())){
@@ -56,8 +62,11 @@ public class HabilitacaoBean implements Serializable {
 		try {
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 			habilitacaoDAO.merge(habilitacao);
-			listar();			
-			return "/pages/habilitacao/listHabilitacaoAux.xhtml?faces-redirect=true";
+			salvo = true;
+			listar();
+			
+			return "/pages/habilitacao/listHabilitacao.xhtml?faces-redirect=true";
+			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar a habilitação");
 			erro.printStackTrace();
@@ -66,6 +75,7 @@ public class HabilitacaoBean implements Serializable {
 	}
 	
 	public void excluir(Habilitacao habilitacao){
+		salvo = false;
 		try {
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();			
 			habilitacaoDAO.excluir(habilitacao);
@@ -96,7 +106,7 @@ public class HabilitacaoBean implements Serializable {
 	public String cancelarCadastro(){
 		habilitacao = null;
 		listar();
-		return "/pages/habilitacao/listHabilitacaoAux.xhtml?faces-redirect=true";
+		return "/pages/habilitacao/listHabilitacao.xhtml?faces-redirect=true";
 	}
 	
 	public Habilitacao getHabilitacao() {
@@ -115,5 +125,12 @@ public class HabilitacaoBean implements Serializable {
 		this.habilitacoes = habilitacoes;
 	}
 
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
 }

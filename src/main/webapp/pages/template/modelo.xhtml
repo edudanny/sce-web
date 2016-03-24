@@ -8,7 +8,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>SCE</title>
+	<title>Fre-E</title>
 
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,13 +20,7 @@
 	<!-- Bootstrap 3.3.5 -->
 	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/bootstrap/css/bootstrap.css" type="text/css" />
 
-	<!-- Font Awesome -->
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
-
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"  type="text/css"/>
-
+	
 	<!-- Theme style -->
 	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/dist/css/AdminLTE.css" type="text/css" />
 	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/dist/css/skins/skin-blue.css" type="text/css"/>
@@ -40,9 +34,9 @@
 			<!-- Logo --> 
 			<a href="index2.html" class="logo"> 
 				<!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini">SCE</span> 
+				<span class="logo-mini">Fre-E</span> 
 				<!-- logo for regular state and mobile devices -->
-				<span class="logo-lg">SCE</span>
+				<span class="logo-lg">Fre-E</span>
 			</a> 
 			<!-- Header Navbar --> 
 			<nav class="navbar navbar-static-top" role="navigation"> 
@@ -153,6 +147,12 @@
 						<h:commandLink action="#{anoLetivoBean.listar}">
 							<i class="fa fa-link"></i> 
 							<span>Anos Letivos</span>
+						</h:commandLink>
+					</li>
+					<li>
+						<h:commandLink action="#{disciplinaBean.listar}">
+							<i class="fa fa-link"></i> 
+							<span>Disciplinas</span>
 						</h:commandLink>
 					</li>
 					<li>

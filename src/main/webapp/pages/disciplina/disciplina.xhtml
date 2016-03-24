@@ -33,33 +33,24 @@
             	</o:messages>
 				<!-- text input -->
 			    <div class="form-group">
-			    	<label>Nome</label>
-			    	<h:inputText value="#{habilitacaoBean.habilitacao.prohabnome}" 
+			    	<label>Disciplina</label>
+			    	<h:inputText value="#{disciplinaBean.disciplina.disnome}" 
 			    				 styleClass="form-control" 
-			    				 pt:placeholder="Nome habilitação"
+			    				 pt:placeholder="Nome Disciplina"
 			    				 required="true"
 			    				 requiredMessage="Campo Obrigatório"
-			    				 id="nome"
+			    				 id="Disciplina"
 			    				 />
 			    	<h:message for="nome" style="color: red"/>
 				</div>
 			
 			    <!-- textarea -->
-			    <div class="form-group">
-			    	<label>Descrição</label>
-			    	<h:inputTextarea value="#{habilitacaoBean.habilitacao.prohabdesc}" 
-			    					 cols="30" rows="3" styleClass="form-control" 
-			    					 pt:placeholder="Descrição da habilitação"
-			    					 required="true"
-			    					 requiredMessage="Campo Obrigatório"
-			    					 id="descricao"/>
-			    	<h:message for="descricao" style="color: red"/>
-			    </div>
+			    
 			    <div class="modal-footer-sce">
 			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 
-			        				 action="#{habilitacaoBean.salvar}"/>
+			        				 action="#{disciplinaBean.salvar}"/>
 			    	<h:commandButton class="btn btn-primary-sce" value="Cancelar" 
-			    					 action="#{habilitacaoBean.cancelarCadastro}"
+			    					 action="#{disciplinaBean.cancelarCadastro}"
 			    					 immediate="true"/>
 			    </div>
 			</h:form>
