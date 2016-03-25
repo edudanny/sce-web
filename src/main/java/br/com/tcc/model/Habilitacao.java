@@ -61,5 +61,31 @@ public class Habilitacao implements Serializable {
 	public void setProfessores(List<Professor> professores) {
 		this.professores = professores;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((prohabcodigo == null) ? 0 : prohabcodigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Habilitacao other = (Habilitacao) obj;
+		if (prohabcodigo == null) {
+			if (other.prohabcodigo != null)
+				return false;
+		} else if (!prohabcodigo.equals(other.prohabcodigo))
+			return false;
+		return true;
+	}
 	
 }
