@@ -1,12 +1,14 @@
 package br.com.tcc.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -24,6 +26,9 @@ public class Habilitacao implements Serializable {
 	
 	@Column(length=255,nullable=false)
 	private String prohabdesc;
+	
+	@OneToMany(mappedBy = "prohabilitacoes")
+    private List<Professor> professores;
 	
 	public Integer getProhabcodigo() {
 		return this.prohabcodigo;
@@ -47,6 +52,14 @@ public class Habilitacao implements Serializable {
 	
 	public void setProhabdesc(String prohabdesc){
 		this.prohabdesc = prohabdesc;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
 	}
 	
 }
