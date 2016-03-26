@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 
 import org.omnifaces.util.Messages;
 
@@ -22,15 +21,12 @@ public class HabilitacaoBean implements Serializable {
 	private List<Habilitacao> habilitacoes;
 	private List<Habilitacao> pesquisa;
 	private List<Habilitacao> habilitacaoAux;
-	private boolean salvo;
-	private String msg;
+	//private boolean salvo;
+	//private String msg;
 	
 	public String listar(){
 		novo();
 		try {
-			if (salvo) {
-				msg = "Habilitação salva com sucesso";
-			}
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 			habilitacoes = habilitacaoDAO.listar();
 			pesquisa = habilitacoes;
@@ -43,7 +39,6 @@ public class HabilitacaoBean implements Serializable {
 	}
 	
 	public void pesquisar(){
-		msg = new String();
 		if (!habilitacao.getProhabnome().equals("")){
 			for (Habilitacao habi : pesquisa) {
 				if (habi.getProhabnome().toLowerCase().contains(habilitacao.getProhabnome().toLowerCase())){
@@ -62,7 +57,6 @@ public class HabilitacaoBean implements Serializable {
 		try {
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 			habilitacaoDAO.merge(habilitacao);
-			salvo = true;
 			listar();
 			
 			return "/pages/habilitacao/listHabilitacao.xhtml?faces-redirect=true";
@@ -75,7 +69,6 @@ public class HabilitacaoBean implements Serializable {
 	}
 	
 	public void excluir(Habilitacao habilitacao){
-		salvo = false;
 		try {
 			HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();			
 			habilitacaoDAO.excluir(habilitacao);
@@ -123,14 +116,6 @@ public class HabilitacaoBean implements Serializable {
 
 	public void setHabilitacoes(List<Habilitacao> habilitacoes) {
 		this.habilitacoes = habilitacoes;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
 	}
 
 }
