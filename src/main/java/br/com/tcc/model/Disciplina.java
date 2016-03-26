@@ -25,7 +25,7 @@ public class Disciplina implements Serializable {
 	@Column(length=30, unique=true,nullable=false)
 	private String disnome;
 	
-	@OneToMany(mappedBy = "mindiscodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "mindiscodigo")
     private List<Ministra> listMinistra;
 	
 	public void setDiscodigo(Integer discodigo) {

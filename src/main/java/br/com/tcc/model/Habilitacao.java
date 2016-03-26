@@ -3,6 +3,7 @@ package br.com.tcc.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +29,7 @@ public class Habilitacao implements Serializable {
 	@Column(length=255,nullable=false)
 	private String prohabdesc;
 	
-	@OneToMany(mappedBy = "habilitacao", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "habilitacao")
     private List<Professor> professores;
 	
 	public Integer getProhabcodigo() {
