@@ -34,7 +34,7 @@ public class Endereco implements Serializable {
 	private String endcomplemento;
 
 	@OneToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "endrescodigo", referencedColumnName = "rescodigo", insertable = false, updatable = false)
 	private Responsavel responsaveis;
 
 	public Integer getEndrescodigo() {

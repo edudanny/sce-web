@@ -22,15 +22,15 @@ public class Matricula implements Serializable {
     private Integer matcodigo;
 	
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "matalucodigo", referencedColumnName = "alucodigo")
     private Aluno aluno;
     
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "matseccodigo", referencedColumnName = "seccodigo")
     private Secretaria secretaria;
     
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "matanocodigo", referencedColumnName = "anocodigo")
     private AnoLetivo anoLetivo;
 
 	public Integer getMatcodigo() {

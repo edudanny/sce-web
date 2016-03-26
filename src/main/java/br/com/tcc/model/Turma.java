@@ -34,7 +34,7 @@ public class Turma implements Serializable {
 	private List<Ministra> listMinistra;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "turanocodigo", referencedColumnName = "anocodigo")
 	private AnoLetivo anoLetivo;
 
 	public Integer getTurcodigo() {

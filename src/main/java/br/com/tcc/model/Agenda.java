@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @SuppressWarnings("serial")
-@Table(name = "agenda")
+@Table(name = "agendas")
 @Entity
 public class Agenda implements Serializable {
 
@@ -29,13 +29,10 @@ public class Agenda implements Serializable {
 	private Calendar agedthr;
 
 	@Column(length = 80)
-	private String ageresnome;
-
-	@Column(length = 11)
-	private Integer agerescpf;
+	private String agenome;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "ageseccodigo", referencedColumnName = "seccodigo")
 	private Secretaria ageseccodigo;
 
 	public Integer getAgecodigo() {
@@ -54,20 +51,12 @@ public class Agenda implements Serializable {
 		this.agedthr = agedthr;
 	}
 
-	public String getAgeresnome() {
-		return this.ageresnome;
+	public String getAgenome() {
+		return this.agenome;
 	}
 
-	public void setAgeresnome(String ageresnome) {
-		this.ageresnome = ageresnome;
-	}
-
-	public Integer getAgerescpf() {
-		return this.agerescpf;
-	}
-
-	public void setAgerescpf(Integer agerescpf) {
-		this.agerescpf = agerescpf;
+	public void setAgenome(String agenome) {
+		this.agenome = agenome;
 	}
 
 	public Secretaria getAgeseccodigo() {

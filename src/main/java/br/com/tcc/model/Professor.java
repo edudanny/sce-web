@@ -30,14 +30,14 @@ public class Professor implements Serializable {
 	@Column(length = 80, nullable = true)
 	private String pronome;
 
-	@OneToMany(mappedBy = "professores", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "minprocodigo", fetch = FetchType.EAGER)
 	private List<Ministra> listMinistra;
 
-	@OneToMany(mappedBy = "professores", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "telprocodigo", fetch = FetchType.EAGER)
 	private List<Telefone> listTelefone;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "proprohabcodigo", referencedColumnName = "prohabcodigo")
 	private Habilitacao habilitacao;
 
 	public Integer getProcodigo() {

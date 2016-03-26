@@ -35,11 +35,11 @@ public class Nota implements Serializable {
 	private Double notvalor;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "notalucodigo", referencedColumnName = "alucodigo")
 	private Aluno notalucodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "notmincodigo", referencedColumnName = "mincodigo")
 	private Ministra notmincodigo;
 
 	public Long getNotcodigo() {

@@ -25,11 +25,11 @@ public class Telefone implements Serializable {
 	private String telnumero;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "telrescodigo", referencedColumnName = "rescodigo")
 	private Responsavel telrescodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "telprocodigo", referencedColumnName = "procodigo")
 	private Professor telprocodigo;
 
 	public Integer getTelcodigo() {

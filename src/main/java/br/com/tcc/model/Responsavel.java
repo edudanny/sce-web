@@ -3,6 +3,7 @@ package br.com.tcc.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,14 +37,13 @@ public class Responsavel implements Serializable {
 	@Column(length = 10, nullable = false)
 	private String resparentesco;
 
-	@OneToMany(mappedBy = "responsaveis", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "alurescodigo", fetch = FetchType.EAGER)
 	private List<Aluno> listAluno;
 
-	@OneToMany(mappedBy = "responsaveis", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "telrescodigo", fetch = FetchType.EAGER)
 	private List<Telefone> lisTelefone;
 
-	@OneToOne
-	@JoinColumn(nullable = false)
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "responsaveis")
 	private Endereco endereco;
 
 	public Integer getRescodigo() {

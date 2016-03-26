@@ -25,22 +25,22 @@ public class Ministra implements Serializable {
 	private Integer mincodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "minprocodigo", referencedColumnName = "procodigo")
 	private Professor minprocodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "minturcodigo", referencedColumnName = "turcodigo")
 	private Turma minturcodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "mindiscodigo", referencedColumnName = "discodigo")
 	private Disciplina mindiscodigo;
 
-	@OneToMany(mappedBy = "ministra", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "fremincodigo", fetch = FetchType.EAGER)
 	private List<Frequencia> listFrequencia;
 
-	@OneToMany(mappedBy = "ministra", fetch = FetchType.EAGER)
-	private List<Nota> notaCollection;
+	@OneToMany(mappedBy = "notmincodigo", fetch = FetchType.EAGER)
+	private List<Nota> listNota;
 
 	public Integer getMincodigo() {
 		return mincodigo;
@@ -82,12 +82,12 @@ public class Ministra implements Serializable {
 		this.listFrequencia = listFrequencia;
 	}
 
-	public List<Nota> getNotaCollection() {
-		return notaCollection;
+	public List<Nota> getListNota() {
+		return listNota;
 	}
 
-	public void setNotaCollection(List<Nota> notaCollection) {
-		this.notaCollection = notaCollection;
+	public void setListNota(List<Nota> listNota) {
+		this.listNota = listNota;
 	}
 
 	@Override

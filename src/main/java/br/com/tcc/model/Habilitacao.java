@@ -28,7 +28,7 @@ public class Habilitacao implements Serializable {
 	@Column(length=255,nullable=false)
 	private String prohabdesc;
 	
-	@OneToMany(mappedBy = "prohabilitacoes", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "habilitacao", fetch = FetchType.EAGER)
     private List<Professor> professores;
 	
 	public Integer getProhabcodigo() {

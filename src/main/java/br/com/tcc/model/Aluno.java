@@ -41,16 +41,16 @@ public class Aluno implements Serializable {
 	private Date aludtnas;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "alurescodigo", referencedColumnName = "rescodigo")
 	private Responsavel alurescodigo;
 
-	@OneToMany(mappedBy = "alunos", fetch = FetchType.EAGER)
-	private List<Frequencia> lisFrequencia;
+	@OneToMany(mappedBy = "frealucodigo", fetch = FetchType.EAGER)
+	private List<Frequencia> listFrequencia;
 
-	@OneToMany(mappedBy = "alunos", fetch = FetchType.EAGER)
-	private List<Matricula> lisMatricula;
+	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
+	private List<Matricula> listMatricula;
 
-	@OneToMany(mappedBy = "alunos", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "notalucodigo", fetch = FetchType.EAGER)
 	private List<Nota> listNota;
 
 	public Integer getAlucodigo() {
@@ -101,20 +101,20 @@ public class Aluno implements Serializable {
 		this.alurescodigo = alurescodigo;
 	}
 
-	public List<Frequencia> getLisFrequencia() {
-		return lisFrequencia;
+	public List<Frequencia> getListFrequencia() {
+		return listFrequencia;
 	}
 
-	public void setLisFrequencia(List<Frequencia> lisFrequencia) {
-		this.lisFrequencia = lisFrequencia;
+	public void setListFrequencia(List<Frequencia> listFrequencia) {
+		this.listFrequencia = listFrequencia;
 	}
 
-	public List<Matricula> getLisMatricula() {
-		return lisMatricula;
+	public List<Matricula> getListMatricula() {
+		return listMatricula;
 	}
 
-	public void setLisMatricula(List<Matricula> lisMatricula) {
-		this.lisMatricula = lisMatricula;
+	public void setListMatricula(List<Matricula> listMatricula) {
+		this.listMatricula = listMatricula;
 	}
 
 	public List<Nota> getListNota() {

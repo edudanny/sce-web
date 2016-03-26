@@ -32,11 +32,11 @@ public class Frequencia implements Serializable {
 	private int frefrequencia;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "frealucodigo", referencedColumnName = "alucodigo")
 	private Aluno frealucodigo;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "fremincodigo", referencedColumnName = "mincodigo")
 	private Ministra fremincodigo;
 
 	public Long getFrecodigo() {
