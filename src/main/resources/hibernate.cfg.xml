@@ -23,18 +23,27 @@
 		
 		<!-- Mostra as SQLs Geradas -->
 		<property name="show_sql">true</property>
+		  		<property name="format_sql">true</property>
 		
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">validate</property>
 		
-		<property name="show_sql">true</property>
-  		<property name="format_sql">true</property>
-		
 		<!-- Mapeamento das entidades-->
-		<mapping class="br.com.tcc.model.Habilitacao"/>		
-		<mapping class="br.com.tcc.model.Disciplina"/>
+		<mapping class="br.com.tcc.model.Agenda"/>		
+		<mapping class="br.com.tcc.model.Aluno"/>
 		<mapping class="br.com.tcc.model.AnoLetivo"/>
-		<mapping class="br.com.tcc.model.Secretaria"/>
+		<mapping class="br.com.tcc.model.Disciplina"/>
+		<mapping class="br.com.tcc.model.Endereco"/>		
+		<mapping class="br.com.tcc.model.Frequencia"/>
+		<mapping class="br.com.tcc.model.Habilitacao"/>
+		<mapping class="br.com.tcc.model.Matricula"/>
+		<mapping class="br.com.tcc.model.Ministra"/>		
+		<mapping class="br.com.tcc.model.Nota"/>
+		<mapping class="br.com.tcc.model.Professor"/>
+		<mapping class="br.com.tcc.model.Responsavel"/>
+		<mapping class="br.com.tcc.model.Secretaria"/>		
+		<mapping class="br.com.tcc.model.Telefone"/>
+		<mapping class="br.com.tcc.model.Turma"/>
 		
 	</session-factory>
 </hibernate-configuration>
