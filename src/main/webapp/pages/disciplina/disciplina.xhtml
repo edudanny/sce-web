@@ -15,10 +15,10 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
           <h1>
-            Habilitação
+            Disciplina
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Habilitações</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Disciplinas</a></li>
             <li class="active">Edição</li>
           </ol>
         </section>
@@ -28,9 +28,6 @@
 			<div>
                 <div style='margin-left: 200x;width: 80%;padding-left: 21%;padding-top: 110px;'>
 			<h:form id="formEdicao">
-				<o:messages var="message">
-                	<li>#{message.summary}</li>
-            	</o:messages>
 				<!-- text input -->
 			    <div class="form-group">
 			    	<label>Disciplina</label>
@@ -39,9 +36,9 @@
 			    				 pt:placeholder="Nome Disciplina"
 			    				 required="true"
 			    				 requiredMessage="Campo Obrigatório"
-			    				 id="Disciplina"
+			    				 id="disciplina"
 			    				 />
-			    	<h:message for="nome" style="color: red"/>
+			    	<h:message for="disciplina" style="color: red"/>
 				</div>
 			
 			    <!-- textarea -->
