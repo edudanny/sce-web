@@ -17,56 +17,56 @@ import javax.persistence.TemporalType;
 @SuppressWarnings("serial")
 @Table(name = "agenda")
 @Entity
-public class Agenda implements Serializable{
-	
-	@Column(length=11)
-	@GeneratedValue(strategy=GenerationType.AUTO)
+public class Agenda implements Serializable {
+
+	@Column(length = 11)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private Integer agecodigo;
-	
+
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar agedthr;
-	
-	@Column(length=80)
+
+	@Column(length = 80)
 	private String ageresnome;
-	
-	@Column(length=11)
+
+	@Column(length = 11)
 	private Integer agerescpf;
-	
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    private Secretaria ageseccodigo;
-	
-	public Integer getAgecodigo(){
+
+	@ManyToOne
+	@JoinColumn(nullable = false)
+	private Secretaria ageseccodigo;
+
+	public Integer getAgecodigo() {
 		return this.agecodigo;
 	}
-	
-	public void setAgecodigo(Integer agecodigo){
+
+	public void setAgecodigo(Integer agecodigo) {
 		this.agecodigo = agecodigo;
 	}
-	
-	public Calendar getAgedthr(){
+
+	public Calendar getAgedthr() {
 		return this.agedthr;
 	}
-	
-	public void setAgedthr(Calendar agedthr){
+
+	public void setAgedthr(Calendar agedthr) {
 		this.agedthr = agedthr;
 	}
-	
-	public String getAgeresnome(){
+
+	public String getAgeresnome() {
 		return this.ageresnome;
 	}
-	
-	public void setAgeresnome(String ageresnome){
+
+	public void setAgeresnome(String ageresnome) {
 		this.ageresnome = ageresnome;
 	}
-	
-	public Integer getAgerescpf(){
+
+	public Integer getAgerescpf() {
 		return this.agerescpf;
 	}
-	
-	public void setAgerescpf(Integer agerescpf){
+
+	public void setAgerescpf(Integer agerescpf) {
 		this.agerescpf = agerescpf;
 	}
 
@@ -103,5 +103,5 @@ public class Agenda implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }
