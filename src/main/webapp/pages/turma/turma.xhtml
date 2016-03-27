@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/pages/template/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+          <h1>
+            Turma
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Turmas</a></li>
+            <li class="active">Edição</li>
+          </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+			<div>
+                <div style='margin-left: 200x;width: 80%;padding-left: 21%;padding-top: 10px;'>
+			<h:form id="formEdicao">
+				<!-- text input -->
+			    <div class="form-group">
+			    	<label>Turma</label>
+			    	<h:inputText value="#{turmaBean.turma.turnome}" 
+			    				 styleClass="form-control" 
+			    				 pt:placeholder="Nome da turma"
+			    				 required="true"
+			    				 requiredMessage="Campo Obrigatório"
+			    				 id="nome"
+			    				 />
+			    	<h:message for="nome" style="color: red"/>
+				</div>
+				
+				<div class="form-group">
+			    	<label>Sala</label>
+			    	<h:inputText value="#{turmaBean.turma.tursala}" 
+			    				 styleClass="form-control" 
+			    				 pt:placeholder="Digite a sala"
+			    				 required="true"
+			    				 requiredMessage="Campo Obrigatório"
+			    				 id="sala"
+			    				 />
+			    	<h:message for="sala" style="color: red"/>
+				</div>
+				
+				 <div class="form-group">
+			    	<label>Ano</label>
+					<h:selectOneMenu
+							id="ano" 
+							styleClass="form-control"
+							value="#{turmaBean.turma.anoLetivo}"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem itemValue="" itemLabel=" -- Selecione -- "/>
+							<f:selectItems value="#{turmaBean.listAnoLetivo}" 
+										   var="ano" itemValue="#{ano}" itemLabel="#{ano.anonome}"/>
+					</h:selectOneMenu>
+			    	<h:message for="ano" style="color: red"/>
+			    </div>
+			
+			    <div class="modal-footer-sce">
+			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 
+			        				 action="#{turmaBean.salvar}"/>
+			    	<h:commandButton class="btn btn-primary-sce" value="Cancelar" 
+			    					 action="#{turmaBean.cancelarCadastro}"
+			    					 immediate="true"/>
+			    </div>
+			</h:form>
+			</div><!-- /.box-body -->
+              </div><!-- /.box -->
+        </section><!-- /.content -->
+	</ui:define>
+</ui:composition>

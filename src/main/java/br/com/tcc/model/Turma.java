@@ -28,9 +28,9 @@ public class Turma implements Serializable {
 	private String turnome;
 
 	@Column(length = 2, nullable = false)
-	private int tursala;
+	private Integer tursala;
 
-	@OneToMany(mappedBy = "minturcodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "minturcodigo")
 	private List<Ministra> listMinistra;
 
 	@ManyToOne
@@ -53,11 +53,11 @@ public class Turma implements Serializable {
 		this.turnome = turnome;
 	}
 
-	public int getTursala() {
+	public Integer getTursala() {
 		return tursala;
 	}
 
-	public void setTursala(int tursala) {
+	public void setTursala(Integer tursala) {
 		this.tursala = tursala;
 	}
 
