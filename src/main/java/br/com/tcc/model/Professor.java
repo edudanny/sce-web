@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,16 +23,16 @@ public class Professor implements Serializable {
 	@Column(length = 3)
 	private Integer procodigo;
 
-	@Column(length = 6, nullable = false, unique = true)
-	private int promatricula;
+	@Column(length = 7, nullable = false, unique = true)
+	private String promatricula;
 
 	@Column(length = 80, nullable = true)
 	private String pronome;
 
-	@OneToMany(mappedBy = "minprocodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "minprocodigo")
 	private List<Ministra> listMinistra;
 
-	@OneToMany(mappedBy = "telprocodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "telprocodigo")
 	private List<Telefone> listTelefone;
 
 	@ManyToOne
@@ -48,11 +47,11 @@ public class Professor implements Serializable {
 		this.procodigo = procodigo;
 	}
 
-	public int getPromatricula() {
+	public String getPromatricula() {
 		return promatricula;
 	}
 
-	public void setPromatricula(int promatricula) {
+	public void setPromatricula(String promatricula) {
 		this.promatricula = promatricula;
 	}
 
