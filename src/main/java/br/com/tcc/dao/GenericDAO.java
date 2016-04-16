@@ -4,6 +4,7 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
@@ -74,6 +75,36 @@ public class GenericDAO<Entidade> {
 			consulta.add(Restrictions.idEq(id));
 			Entidade resultado = (Entidade) consulta.uniqueResult();
 			return resultado;
+		} catch (RuntimeException erro){
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Entidade> buscar(String query, Object... params){
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		try{
+			Query q = sessao.getNamedQuery(query).setString("idProfessor", params[0].toString());
+			/*int i = 1;
+			for (Object o : params) {
+				q.setParameter(i, o);
+			}*/
+			return q.list();
+		} catch (RuntimeException erro){
+			throw erro;
+		} finally {
+			sessao.close();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Entidade> buscar(String query){
+		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
+		try{
+			Query q = sessao.getNamedQuery(query);
+			return q.list();
 		} catch (RuntimeException erro){
 			throw erro;
 		} finally {
