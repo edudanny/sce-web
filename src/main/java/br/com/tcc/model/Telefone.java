@@ -9,13 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+@NamedQueries({
+	@NamedQuery(name = Telefone.QUERY_SEARCH_TEL_PROF, 
+				query = "select t from Telefone t where t.telprocodigo.procodigo = :idProfessor ")
+})
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "telefones")
 public class Telefone implements Serializable {
-
+	
+	public static final String QUERY_SEARCH_TEL_PROF = "Telefone.SearchTelProf";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(length = 11)

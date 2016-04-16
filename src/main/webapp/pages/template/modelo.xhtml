@@ -19,6 +19,12 @@
 
 	<!-- Bootstrap 3.3.5 -->
 	<link rel="stylesheet" href="#{facesContext.externalContext.request.contextPath}/resources/bootstrap/css/bootstrap.css" type="text/css" />
+	
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+	
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
 
 	
 	<!-- Theme style -->
@@ -159,6 +165,12 @@
 						<h:commandLink action="#{turmaBean.listar}">
 							<i class="fa fa-link"></i> 
 							<span>Turmas</span>
+						</h:commandLink>
+					</li>
+					<li>
+						<h:commandLink action="#{matricularBean.listar}">
+							<i class="fa fa-link"></i> 
+							<span>Matriculas</span>
 						</h:commandLink>
 					</li>
 				</ul>

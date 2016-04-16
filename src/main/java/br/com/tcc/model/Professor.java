@@ -5,18 +5,27 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@NamedQueries({
+	@NamedQuery(name = Professor.QUERY_LIST_PROF, 
+			query = "select p from Professor p order by pronome")
+})
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "professores")
 public class Professor implements Serializable {
+	
+	public static final String QUERY_LIST_PROF = "Professor.ListProf";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +41,7 @@ public class Professor implements Serializable {
 	@OneToMany(mappedBy = "minprocodigo")
 	private List<Ministra> listMinistra;
 
-	@OneToMany(mappedBy = "telprocodigo")
+	@OneToMany(mappedBy = "telprocodigo", orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Telefone> listTelefone;
 
 	@ManyToOne

@@ -32,12 +32,21 @@
 			    	<label>Nome</label>
 			    	<h:inputText value="#{professorBean.professor.pronome}" 
 			    				 styleClass="form-control" 
-			    				 pt:placeholder="Nome professor"
-			    				 required="true"
-			    				 requiredMessage="Campo Obrigatório"
-			    				 id="nome"
-			    				 />
-			    	<h:message for="nome" style="color: red"/>
+			    				 pt:placeholder="Nome professor" id="nome" />
+				</div>
+				
+				<div class="form-group">
+					<label>Telefone(s)</label>
+					<h:dataTable id="qtdfone" var="tel" 
+							 value="#{professorBean.listTelefones}">
+						<h:column>
+							<h:inputText value="#{tel.telnumero}" 
+										 styleClass="form-control" 
+										 maxlength="30"
+										 pt:placeholder="Telefone"/>
+							<br/>
+						</h:column>
+					</h:dataTable>
 				</div>
 			
 			    <!-- textarea -->
@@ -48,9 +57,11 @@
 							styleClass="form-control"
 							value="#{professorBean.professor.habilitacao}"
 							converter="omnifaces.SelectItemsConverter">
-							<f:selectItem itemValue="" itemLabel=" -- Selecione -- "/>
+							<f:selectItem itemValue="" 
+										  itemLabel=" -- Selecione -- "/>
 							<f:selectItems value="#{professorBean.listHabilitacao}" 
-										   var="hab" itemValue="#{hab}" itemLabel="#{hab.prohabnome}"/>
+										   var="hab" itemValue="#{hab}" 
+										   itemLabel="#{hab.prohabnome}"/>
 					</h:selectOneMenu>
 			    	<h:message for="habilicacao" style="color: red"/>
 			    </div>
@@ -58,8 +69,7 @@
 			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 
 			        				 action="#{professorBean.salvar}"/>
 			    	<h:commandButton class="btn btn-primary-sce" value="Cancelar" 
-			    					 action="#{professorBean.cancelarCadastro}"
-			    					 immediate="true"/>
+			    					 action="#{professorBean.cancelarCadastro}"/>
 			    </div>
 			</h:form>
 			</div><!-- /.box-body -->

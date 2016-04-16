@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import br.com.tcc.utils.Menuable;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name="prohabilitacoes")
-public class Habilitacao implements Serializable {
+public class Habilitacao implements Serializable, Menuable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -88,6 +90,11 @@ public class Habilitacao implements Serializable {
 		} else if (!prohabcodigo.equals(other.prohabcodigo))
 			return false;
 		return true;
+	}
+
+	@Override
+	public Object getIdentifier() {
+		return getProhabcodigo() != null ? getProhabcodigo() : -1;
 	}
 	
 }

@@ -44,7 +44,7 @@ public class Aluno implements Serializable {
 	@JoinColumn(name = "alurescodigo", referencedColumnName = "rescodigo")
 	private Responsavel alurescodigo;
 
-	@OneToMany(mappedBy = "frealucodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "frealucodigo")
 	private List<Frequencia> listFrequencia;
 
 	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)

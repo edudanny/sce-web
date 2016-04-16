@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Utilitario {
 	
-	public String geraRandomMat(){
+	public String gerarRandomMat(){
 		char[] chart = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 		char[] matricula = new char[4];

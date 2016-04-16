@@ -11,8 +11,10 @@ import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.HabilitacaoDAO;
 import br.com.tcc.dao.ProfessorDAO;
+import br.com.tcc.dao.TelefoneDAO;
 import br.com.tcc.model.Habilitacao;
 import br.com.tcc.model.Professor;
+import br.com.tcc.model.Telefone;
 import br.com.tcc.utils.Utilitario;
 
 @SuppressWarnings("serial")
@@ -26,13 +28,28 @@ public class ProfessorBean implements Serializable {
 	private List<Professor> listProfessorAux;
 	
 	private List<Habilitacao> listHabilitacao;
+	private Habilitacao habilitacao;
+	
+	private List<Telefone> listTelefones;
+	private Telefone telefone;
+	
+	private boolean cadastrando;
+	
 	
 	public String listar(){
+		listTelefones = new ArrayList<Telefone>();
+		
+		listTelefones.add(new Telefone());
+		listTelefones.add(new Telefone());
 		novo();
 		try {
 			ProfessorDAO professorDAO = new ProfessorDAO();
-			listProfessor = professorDAO.listar();
 			pesquisa = listProfessor;
+			
+
+			listProfessor = professorDAO.buscar(Professor.QUERY_LIST_PROF);
+			pesquisa = listProfessor;
+			
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os professores");
 			erro.printStackTrace();
@@ -59,13 +76,28 @@ public class ProfessorBean implements Serializable {
 	public String salvar(){
 		try {
 			ProfessorDAO professorDAO = new ProfessorDAO();
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
 			
 			if (professor.getPromatricula() == null) {
 				Utilitario util = new Utilitario();
-				professor.setPromatricula(util.geraRandomMat());
-			}			
-			professorDAO.merge(professor);
+				professor.setPromatricula(util.gerarRandomMat());
+			}
+			
+			if (professor.getProcodigo().equals(null)) {
+				professorDAO.salvar(professor);
+			} else {
+				professorDAO.editar(professor);
+			}
+			
+			
+			for (Telefone tel : listTelefones) {
+				tel.setTelprocodigo(professor);
+				telefoneDAO.merge(tel);
+			}
+			
 			listar();
+			
+			listTelefones = new ArrayList<Telefone>();
 			
 			return "/pages/professor/listProfessor.xhtml?faces-redirect=true";
 			
@@ -78,6 +110,14 @@ public class ProfessorBean implements Serializable {
 	
 	public void excluir(Professor professor){
 		try {
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
+			listTelefones = telefoneDAO.buscar(Telefone.QUERY_SEARCH_TEL_PROF, professor.getProcodigo());
+			professor.setListTelefone(listTelefones);
+			
+			/*for (Telefone fone : professor.getListTelefone()) {
+				telefoneDAO.excluir(fone);
+			}*/
+			
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			professorDAO.excluir(professor);
 			listar();
@@ -88,7 +128,16 @@ public class ProfessorBean implements Serializable {
 	}
 	
 	public String editar(Professor prof){
+		listTelefones = new ArrayList<Telefone>();
+		TelefoneDAO telefoneDAO = new TelefoneDAO();
+		listTelefones = telefoneDAO.buscar(Telefone.QUERY_SEARCH_TEL_PROF, prof.getProcodigo());
+		
+		listHabilitacao = new ArrayList<Habilitacao>();
+		HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
+		listHabilitacao = habilitacaoDAO.listar();
+				
 		professor = prof;
+		
 		return "/pages/professor/professor.xhtml?faces-redirect=true";
 	}
 	
@@ -97,6 +146,8 @@ public class ProfessorBean implements Serializable {
 		listProfessor = new ArrayList<Professor>();
 		pesquisa = new ArrayList<Professor>();
 		listProfessorAux = new ArrayList<Professor>();
+		
+		telefone = new Telefone();
 	}
 	
 	public String prepararCadastro(){
@@ -106,11 +157,13 @@ public class ProfessorBean implements Serializable {
 		HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 		listHabilitacao = habilitacaoDAO.listar();
 		
+		cadastrando = true;
+		
 		return "/pages/professor/professor.xhtml?faces-redirect=true";
 	}
 	
 	public String cancelarCadastro(){
-		professor = null;
+ 		professor = null;
 		listar();
 		return "/pages/professor/listProfessor.xhtml?faces-redirect=true";
 	}
@@ -135,5 +188,37 @@ public class ProfessorBean implements Serializable {
 	public void setListHabilitacao(List<Habilitacao> listHabilitacao) {
 		this.listHabilitacao = listHabilitacao;
 	}
-	
+
+	public List<Telefone> getListTelefones() {
+		return listTelefones;
+	}
+
+	public void setListTelefones(List<Telefone> listTelefones) {
+		this.listTelefones = listTelefones;
+	}
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+
+	public boolean isCadastrando() {
+		return cadastrando;
+	}
+
+	public void setCadastrando(boolean cadastrando) {
+		this.cadastrando = cadastrando;
+	}
+
+	public Habilitacao getHabilitacao() {
+		return habilitacao;
+	}
+
+	public void setHabilitacao(Habilitacao habilitacao) {
+		this.habilitacao = habilitacao;
+	}
+
 }
