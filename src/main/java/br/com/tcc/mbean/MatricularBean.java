@@ -24,21 +24,21 @@ public class MatricularBean implements Serializable {
 	
 	public String listar(){
 		novo();
-		/*try {
+		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
 			listResponsavel = responsavelDAO.listar();
 			pesquisa = listResponsavel;
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os responsaveis");
 			erro.printStackTrace();
-		}*/
+		}
 		return "/pages/matricula/listMatricula.xhtml?faces-redirect=true";
 	}
 	
 	public void pesquisar(){
-		if (!responsavel.getResnome().equals("")){
+		if (!responsavel.getRescpf().equals("")){
 			for (Responsavel resp : pesquisa) {
-				if (resp.getResnome().toLowerCase().contains(responsavel.getResnome().toLowerCase())){
+				if (resp.getRescpf().toLowerCase().contains(responsavel.getRescpf().toLowerCase())){
 					listResponsavelAux.add(resp);
 				}
 			}
@@ -53,7 +53,7 @@ public class MatricularBean implements Serializable {
 	public String salvar(){
 		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
-			responsavelDAO.merge(responsavel);
+			responsavelDAO.salvar(responsavel);
 			listar();
 			
 			return "/pages/matricula/listMatricula.xhtml?faces-redirect=true";
@@ -83,9 +83,9 @@ public class MatricularBean implements Serializable {
 		listResponsavelAux = new ArrayList<Responsavel>();
 	}
 	
-	public String prepararCadastro(){
+	public String novaMatricula(){
 		responsavel = new Responsavel();		
-		return "/pages/matricula/matricula.xhtml?faces-redirect=true";
+		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
 	}
 	
 	public String cancelarCadastro(){

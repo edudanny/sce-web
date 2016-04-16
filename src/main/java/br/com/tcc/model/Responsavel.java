@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,10 +36,10 @@ public class Responsavel implements Serializable {
 	@Column(length = 10, nullable = false)
 	private String resparentesco;
 
-	@OneToMany(mappedBy = "alurescodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "alurescodigo")
 	private List<Aluno> listAluno;
 
-	@OneToMany(mappedBy = "telrescodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "telrescodigo")
 	private List<Telefone> lisTelefone;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "responsaveis")

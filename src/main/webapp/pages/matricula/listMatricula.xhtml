@@ -16,7 +16,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Matricular
+				Lista de Habilitações
 			</h1>
 			<ol class="breadcrumb">
 				<li>
@@ -25,19 +25,76 @@
 						Início
 					</a>
 				</li>
+				<li class="active">Habilitação</li>
 			</ol>
 		</section>
 		<!-- Main content -->
 		<section class="content">
-			<!-- Default box -->
-        	<div class="box">
-				<div class="box-header with-border">
-					<h3 class="box-title">Sistema de Frequência Escolar</h3>
+			<h:form id="formListagem">
+				<div class="input-group-sce input-group-sm">				
+					<h:inputText id="pesquisa" styleClass="form-control-sce" 
+								 value="#{matricularBean.responsavel.rescpf}" 
+								 pt:placeholder="Pesquisar responsável">
+								 
+						<f:ajax listener="#{matricularBean.pesquisar}" 
+								event="keyup" 
+								render=":formListagem:tabela :formListagem:msg"></f:ajax>
+								 
+					</h:inputText>
+					
+				</div><!-- Your Page Content Here -->
+					
+				<div class="col-md-12-sce">
+					<p:dataTable styleClass="table table-bordered" id="tabela"
+								 emptyMessage="Nenhum registro encontrado."
+								 paginator="true" paginatorPosition="bottom"
+								 value="#{matricularBean.listResponsavel}" var="res"
+								 rows="10">
+						<p:column sortBy="#{res.resnome}">
+							<f:facet name="header">
+								<h:outputText value="Nome"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{res.resnome}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="CPF"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{res.rescpf}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="RG"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{res.resrg}"></h:outputText>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Parentesco"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{res.resparentesco}"></h:outputText>
+						</p:column>
+						<p:column width="200">
+							<f:facet name="header">
+								<h:outputText value="Ações"/>
+							</f:facet>
+							<h:commandLink>
+								<h:commandLink action="#{matricularBean.editar(res)}">
+									<h:graphicImage url="/resources/img/edit_32x32.png" height="25" width="25" title="Clique para Editar" />
+								</h:commandLink>
+								<h:commandLink  onclick="return confirm('Tem certeza que deseja excluir?')"
+												actionListener="#{matricularBean.excluir(res)}">
+									<h:graphicImage url="/resources/img/delete_32x32.png" height="25" width="25" title="Clique para Excluir" />
+								</h:commandLink>
+							</h:commandLink>
+						</p:column>
+					</p:dataTable>
+					
+					<h:commandButton class="btn btn-primary-sce-novo" value="Matricular" 
+									 action="#{matricularBean.novaMatricula}" style="margin-left: 91%"/>
+			    
 				</div>
-				<div class="box-body">
-					Start creating your amazing application!
-				</div><!-- /.box-body -->
-			</div><!-- /.box -->
+			</h:form>
 		</section><!-- /.content -->
 	</ui:define>
 </ui:composition>
