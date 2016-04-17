@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.ResponsavelDAO;
+import br.com.tcc.model.Aluno;
 import br.com.tcc.model.Responsavel;
 
 @SuppressWarnings("serial")
@@ -21,6 +22,9 @@ public class MatricularBean implements Serializable {
 	private List<Responsavel> listResponsavel;
 	private List<Responsavel> pesquisa;
 	private List<Responsavel> listResponsavelAux;
+	
+	private List<Aluno> listAluno;
+	private Aluno aluno;
 	
 	public String listar(){
 		novo();
@@ -65,6 +69,12 @@ public class MatricularBean implements Serializable {
 		return "";
 	}
 	
+	public void addResponsavel() {
+		aluno = new Aluno();
+		listAluno.add(aluno);
+		System.out.println("--------");
+	}
+	
 	public void excluir(Responsavel responsavel){
 		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
@@ -81,10 +91,12 @@ public class MatricularBean implements Serializable {
 		listResponsavel = new ArrayList<Responsavel>();
 		pesquisa = new ArrayList<Responsavel>();
 		listResponsavelAux = new ArrayList<Responsavel>();
+		listAluno = new ArrayList<Aluno>();
 	}
 	
 	public String novaMatricula(){
-		responsavel = new Responsavel();		
+		responsavel = new Responsavel();
+		addResponsavel();
 		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
 	}
 	
@@ -110,6 +122,22 @@ public class MatricularBean implements Serializable {
 	}
 	public void setListResponsavel(List<Responsavel> listResponsavel) {
 		this.listResponsavel = listResponsavel;
+	}
+
+	public List<Aluno> getListAluno() {
+		return listAluno;
+	}
+
+	public void setListAluno(List<Aluno> listAluno) {
+		this.listAluno = listAluno;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 }

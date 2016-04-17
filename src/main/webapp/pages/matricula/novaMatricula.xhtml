@@ -8,87 +8,128 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-	template="/pages/template/modelo.xhtml">
+	xmlns:o="http://omnifaces.org/ui"
+	template="/pages/template/modelo.xhtml"
+                xmlns:t="http://myfaces.apache.org/tomahawk">
 
 	<ui:define name="conteudo">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-          <h1>
-            Matricular
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Matriculas</a></li>
-            <li class="active">Nova Matricula</li>
-          </ol>
-        <section class="content">
-
-          <!-- Default box -->
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Responsavel</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-              <h:form id="formEdicao">
-				<!-- text input -->
-			    <div class="form-group">
-			    	<label>Nome</label>
-			    	<h:inputText value="#{matricularBean.responsavel.resnome}" 
-			    				 styleClass="form-control" 
-			    				 pt:placeholder="Nome responsavel"
-			    				 required="true"
-			    				 requiredMessage="Campo Obrigatório"
-			    				 id="nome"
-			    				 />
-			    	<h:message for="nome" style="color: red"/>
-				</div>
-			
-			    <div class="form-group">
-			    	<label>CPF</label>
-			    	<h:inputText value="#{matricularBean.responsavel.rescpf}" 
-			    					 cols="30" rows="3" styleClass="form-control" 
-			    					 pt:placeholder="999.999.999-99"
-			    					 required="true"
-			    					 requiredMessage="Campo Obrigatório"
-			    					 id="cpf"/>
-			    	<h:message for="cpf" style="color: red"/>
-			    </div>
-			    
-			     <div class="form-group">
-			    	<label>RG</label>
-			    	<h:inputText value="#{matricularBean.responsavel.resrg}" 
-			    					 cols="30" rows="3" styleClass="form-control" 
-			    					 pt:placeholder="00000000"
-			    					 required="true"
-			    					 requiredMessage="Campo Obrigatório"
-			    					 id="rg"/>
-			    	<h:message for="rg" style="color: red"/>
-			    </div>
-			    
-			    <div class="form-group">
-			    	<label>Parentesco</label>
-			    	<h:inputText value="#{matricularBean.responsavel.resparentesco}" 
-			    					 cols="30" rows="3" styleClass="form-control" 
-			    					 pt:placeholder="00000000"
-			    					 required="true"
-			    					 requiredMessage="Campo Obrigatório"/>
-			    </div>
-			    <div class="modal-footer-sce">
-			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 
-			        				 action="#{matricularBean.salvar}"/>
-			    	<h:commandButton class="btn btn-primary-sce" value="Cancelar" 
-			    					 action="#{matricularBean.cancelarCadastro}"
-			    					 immediate="true"/>
-			    </div>
-			</h:form>
-            </div><!-- /.box-body -->
-          </div><!-- /.box -->
-
-        </section><!-- /.content -->
-			
-        </section><!-- /.content -->
+			<h1>Matricular</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#"><i class="fa fa-dashboard">
+						</i> Matriculas</a></li>
+				<li class="active">Nova Matricula</li>
+			</ol>
+        	<section class="content">
+				<!-- Default box -->
+				<div class="box">
+					<div class="box-header with-border">
+						<h3 class="box-title">Responsavel</h3>
+						<div class="box-tools pull-right">
+							<button class="btn btn-box-tool" data-widget="collapse" 
+									data-toggle="tooltip" title="Minimizar">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button class="btn btn-box-tool" data-widget="remove" 
+									data-toggle="tooltip" title="Remover">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<h:form id="formEdicao">
+							<!-- text input -->
+							<div class="form-group">
+								<label>Nome</label>
+								<h:inputText value="#{matricularBean.responsavel.resnome}" 
+					    				 	 styleClass="form-control"
+					    				 	 pt:placeholder="Nome responsavel" id="nome"/>
+							</div>
+		
+					    	<div class="form-group">
+					    		<label>CPF</label>
+					    		<h:inputText value="#{matricularBean.responsavel.rescpf}" 
+					    					 cols="30" rows="3" styleClass="form-control" 
+					    					 pt:placeholder="999.999.999-99" 
+					    					 id="cpf"/>
+					    	</div>
+					    
+							<div class="form-group">
+					    		<label>RG</label>
+					    		<h:inputText value="#{matricularBean.responsavel.resrg}" 
+					    					 cols="30" rows="3" styleClass="form-control" 
+					    					 pt:placeholder="00000000" id="rg" />
+					    	</div>
+					    
+					    	<div class="form-group">
+					    		<label>Parentesco</label>
+					    		<h:inputText value="#{matricularBean.responsavel.resparentesco}" 
+					    					 cols="30" rows="3" styleClass="form-control" 
+					    					 pt:placeholder="00000000"/>
+					    	</div>
+							<div class="modal-footer-sce">
+								<h:commandButton class="btn btn-primary-sce" value="Adicionar" 
+					    						 action="#{matricularBean.addResponsavel}"
+					    						 immediate="true"/>
+							</div>
+						</h:form>
+					</div><!-- /.box-body -->
+				</div><!-- /.box -->
+	          	<!-- /////////////////////////////////////////////////////////// -->
+				<h:form id="formEdicaoFilho">
+					<ui:repeat var="alu" value="#{matricularBean.listAluno}">
+						<div class="box">
+							<div class="box-header with-border">
+								<h3 class="box-title">Filho</h3>
+								<div class="box-tools pull-right">
+									<button class="btn btn-box-tool" data-widget="collapse" 
+	                					data-toggle="tooltip" title="Minimizar">
+	                					<i class="fa fa-minus"></i>
+	                				</button>
+	                				<button class="btn btn-box-tool" data-widget="remove" 
+	                					data-toggle="tooltip" title="Remover">
+	                					<i class="fa fa-times"></i>
+	                				</button>
+	              				</div>
+	            			</div>
+		            		<div class="box-body">
+								<!-- text input -->
+					    		<div class="form-group">
+					    			<label>Nome</label>
+					    			<h:inputText value="#{alu.alunome}" id="nome"
+					    				 		 styleClass="form-control"
+					    			 			 pt:placeholder="Nome Aluno"/>
+								</div>
+								
+								<div class="form-group">
+					    			<label>Sexo</label>
+					    			<h:selectOneRadio value="#{alu.alusexo}" styleClass="minimal">
+					    				<f:selectItem itemValue="0" itemLabel="Masculino" />
+					    				<f:selectItem itemValue="1" itemLabel="Feminino"/>
+					    			</h:selectOneRadio>
+								</div>
+								
+								<div class="form-group">
+					    			<label>Data de Nascimento</label>
+					    			<p:inputMask mask="99/99/9999" value="#{alu.aludtnas}"/>
+								</div>
+								<div class="modal-footer-sce">
+								<h:commandButton class="btn btn-primary-sce" value="Adicionar" 
+					    						 action="#{matricularBean.addResponsavel}"
+					    						 immediate="true"/>
+							</div>
+		            		</div><!-- /.box-body -->
+		          		</div><!-- /.box -->        
+					</ui:repeat> 
+				</h:form>
+				
+				<h:form id="formSalvar">
+					<h:commandButton class="btn btn-primary-sce-novo" value="Confirmar" 
+									 action="#{matricularBean.salvar}" style="margin-left: 91%"/>
+				</h:form>
+			</section><!-- /.content -->
+		</section><!-- /.content -->
 	</ui:define>
 </ui:composition>
