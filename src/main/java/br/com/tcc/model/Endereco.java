@@ -19,7 +19,7 @@ public class Endereco implements Serializable {
 	private Integer endrescodigo;
 
 	@Column(length = 8, nullable = false)
-	private int endcep;
+	private Integer endcep;
 
 	@Column(length = 40, nullable = false)
 	private String endbairro;
@@ -45,11 +45,11 @@ public class Endereco implements Serializable {
 		this.endrescodigo = endrescodigo;
 	}
 
-	public int getEndcep() {
+	public Integer getEndcep() {
 		return endcep;
 	}
 
-	public void setEndcep(int endcep) {
+	public void setEndcep(Integer endcep) {
 		this.endcep = endcep;
 	}
 

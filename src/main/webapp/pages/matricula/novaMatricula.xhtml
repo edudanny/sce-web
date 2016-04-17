@@ -22,63 +22,98 @@
 						</i> Matriculas</a></li>
 				<li class="active">Nova Matricula</li>
 			</ol>
-        	<section class="content">
-				<!-- Default box -->
-				<div class="box">
-					<div class="box-header with-border">
-						<h3 class="box-title">Responsavel</h3>
-						<div class="box-tools pull-right">
-							<button class="btn btn-box-tool" data-widget="collapse" 
-									data-toggle="tooltip" title="Minimizar">
-								<i class="fa fa-minus"></i>
-							</button>
-							<button class="btn btn-box-tool" data-widget="remove" 
-									data-toggle="tooltip" title="Remover">
-								<i class="fa fa-times"></i>
-							</button>
-						</div>
-					</div>
-					<div class="box-body">
-						<h:form id="formEdicao">
-							<!-- text input -->
-							<div class="form-group">
-								<label>Nome</label>
-								<h:inputText value="#{matricularBean.responsavel.resnome}" 
-					    				 	 styleClass="form-control"
-					    				 	 pt:placeholder="Nome responsavel" id="nome"/>
-							</div>
-		
-					    	<div class="form-group">
-					    		<label>CPF</label>
-					    		<h:inputText value="#{matricularBean.responsavel.rescpf}" 
-					    					 cols="30" rows="3" styleClass="form-control" 
-					    					 pt:placeholder="999.999.999-99" 
-					    					 id="cpf"/>
-					    	</div>
-					    
-							<div class="form-group">
-					    		<label>RG</label>
-					    		<h:inputText value="#{matricularBean.responsavel.resrg}" 
-					    					 cols="30" rows="3" styleClass="form-control" 
-					    					 pt:placeholder="00000000" id="rg" />
-					    	</div>
-					    
-					    	<div class="form-group">
-					    		<label>Parentesco</label>
-					    		<h:inputText value="#{matricularBean.responsavel.resparentesco}" 
-					    					 cols="30" rows="3" styleClass="form-control" 
-					    					 pt:placeholder="00000000"/>
-					    	</div>
-							<div class="modal-footer-sce">
-								<h:commandButton class="btn btn-primary-sce" value="Adicionar" 
-					    						 action="#{matricularBean.addResponsavel}"
-					    						 immediate="true"/>
+		</section><!-- /.content-header -->
+		<section class="content">
+			<div class="row">
+				<div class="col-md-12">
+				<!-- Custom Tabs -->
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#tab_1" data-toggle="tab">Responsável</a></li>
+							<li><a href="#tab_2" data-toggle="tab">Endereço</a></li>
+						</ul>
+						<h:form id="formResponsavel">
+							<div class="tab-content">
+								<div class="tab-pane active" id="tab_1">
+									<!-- text input -->
+									<div class="col-xs-6">
+										<label>Nome</label>
+										<h:inputText value="#{matricularBean.responsavel.resnome}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="Nome responsavel" id="nome"/>
+									</div>
+							    	<div class="col-xs-6">
+								    	<label>CPF</label>
+								    	<h:inputText value="#{matricularBean.responsavel.rescpf}" 
+								    				 cols="30" rows="3" styleClass="form-control-sce" 
+								    				 pt:placeholder="999.999.999-99" 
+								    				 id="cpf"/>
+								    </div>
+								    	
+									<div class="col-xs-6">
+								    	<label>RG</label>
+								    	<h:inputText value="#{matricularBean.responsavel.resrg}" 
+								    				 cols="30" rows="3" styleClass="form-control-sce" 
+								    				 pt:placeholder="00000000" id="rg" />
+								    </div>
+								    
+								    <div class="col-xs-6">
+								    	<label>Parentesco</label>
+								    	<h:inputText value="#{matricularBean.responsavel.resparentesco}" 
+								    				 styleClass="form-control-sce" 
+								    				 pt:placeholder="Pai, Mãe, Tio, Tia"/>
+								    </div>
+								    	
+									<div class="box-footer" style="padding-top: 15%">
+										<h:commandButton styleClass="btn btn-primary-sce" value="Salvar" 
+								    					 action="#{matricularBean.salvarResponsavel}"/>
+								    	<h:commandButton class="btn btn-primary-sce" value="Adicionar" 
+					    						 action="#{matricularBean.addAluno}"/>
+									</div>
+									
+								</div><!-- /.tab-pane -->
+								<div class="tab-pane" id="tab_2">
+                    				<div class="col-xs-6">
+										<label>CEP</label>
+										<h:inputText value="#{matricularBean.endereco.endcep}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="99999-110" id="cep"/>
+						    		</div>	 
+						    			<div class="col-xs-6">
+										<label>Bairro</label>
+										<h:inputText value="#{matricularBean.endereco.endbairro}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="Bairro" id="bairro"/>
+									</div>
+									
+									<div class="col-xs-6">
+										<label>Rua</label>
+										<h:inputText value="#{matricularBean.endereco.endrua}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="Rua" id="rua"/>
+									</div>
+									
+									<div class="col-xs-6">
+										<label>Número</label>
+										<h:inputText value="#{matricularBean.endereco.endnumero}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="Número" id="numero"/>
+									</div>
+									
+									<div class="col-xs-6">
+										<label>Complemento</label>
+										<h:inputText value="#{matricularBean.endereco.endcomplemento}" 
+						    			 	 		 styleClass="form-control-sce"
+						    			 	 		 pt:placeholder="Complemento" id="complemento"/>
+									</div> 
+						    		
+                  				</div><!-- /.tab-pane -->
 							</div>
 						</h:form>
-					</div><!-- /.box-body -->
-				</div><!-- /.box -->
-	          	<!-- /////////////////////////////////////////////////////////// -->
-				<h:form id="formEdicaoFilho">
+					</div>
+				</div>
+			</div>
+			<h:form id="formAluno">
 					<ui:repeat var="alu" value="#{matricularBean.listAluno}">
 						<div class="box">
 							<div class="box-header with-border">
@@ -116,20 +151,18 @@
 					    			<p:inputMask mask="99/99/9999" value="#{alu.aludtnas}"/>
 								</div>
 								<div class="modal-footer-sce">
-								<h:commandButton class="btn btn-primary-sce" value="Adicionar" 
-					    						 action="#{matricularBean.addResponsavel}"
-					    						 immediate="true"/>
+								<h:commandButton class="btn btn-primary-sce" value="Salvar" 
+					    						 action="#{matricularBean.salvarAluno(alu)}"/>
 							</div>
 		            		</div><!-- /.box-body -->
-		          		</div><!-- /.box -->        
-					</ui:repeat> 
+		          		</div><!-- /.box -->
+		          	</ui:repeat>
 				</h:form>
 				
 				<h:form id="formSalvar">
 					<h:commandButton class="btn btn-primary-sce-novo" value="Confirmar" 
 									 action="#{matricularBean.salvar}" style="margin-left: 91%"/>
 				</h:form>
-			</section><!-- /.content -->
-		</section><!-- /.content -->
+		</section>
 	</ui:define>
 </ui:composition>

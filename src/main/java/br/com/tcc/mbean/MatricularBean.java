@@ -11,7 +11,9 @@ import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.ResponsavelDAO;
 import br.com.tcc.model.Aluno;
+import br.com.tcc.model.Endereco;
 import br.com.tcc.model.Responsavel;
+import br.com.tcc.model.Telefone;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -22,9 +24,14 @@ public class MatricularBean implements Serializable {
 	private List<Responsavel> listResponsavel;
 	private List<Responsavel> pesquisa;
 	private List<Responsavel> listResponsavelAux;
+	private List<Responsavel> listNovoResponsavel;
 	
-	private List<Aluno> listAluno;
 	private Aluno aluno;
+	private List<Aluno> listAluno;
+	private List<Aluno> listNovoAluno;
+	
+	private Endereco endereco;
+	private List<Telefone> listTelefone;
 	
 	public String listar(){
 		novo();
@@ -69,10 +76,21 @@ public class MatricularBean implements Serializable {
 		return "";
 	}
 	
-	public void addResponsavel() {
+	public void salvarResponsavel() {
+		responsavel.setEndereco(endereco);
+		listNovoResponsavel.add(responsavel);
+		System.out.println("SALVO RESPONSAVEL");
+	}
+	
+	public void salvarAluno(Aluno alu) {
+		listNovoAluno.add(alu);
+		System.out.println("SALVO ALUNO ");
+	}
+	
+	public void addAluno() {
 		aluno = new Aluno();
 		listAluno.add(aluno);
-		System.out.println("--------");
+		System.out.println("ADICIONADO ALUNO");
 	}
 	
 	public void excluir(Responsavel responsavel){
@@ -92,11 +110,16 @@ public class MatricularBean implements Serializable {
 		pesquisa = new ArrayList<Responsavel>();
 		listResponsavelAux = new ArrayList<Responsavel>();
 		listAluno = new ArrayList<Aluno>();
+		endereco = new Endereco();
 	}
 	
 	public String novaMatricula(){
 		responsavel = new Responsavel();
-		addResponsavel();
+		
+		listNovoAluno = new ArrayList<Aluno>();
+		listNovoResponsavel = new ArrayList<Responsavel>();
+		
+		addAluno();
 		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
 	}
 	
@@ -138,6 +161,22 @@ public class MatricularBean implements Serializable {
 
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<Telefone> getListTelefone() {
+		return listTelefone;
+	}
+
+	public void setListTelefone(List<Telefone> listTelefone) {
+		this.listTelefone = listTelefone;
 	}
 
 }
