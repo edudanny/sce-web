@@ -114,10 +114,6 @@ public class ProfessorBean implements Serializable {
 			listTelefones = telefoneDAO.buscar(Telefone.QUERY_SEARCH_TEL_PROF, professor.getProcodigo());
 			professor.setListTelefone(listTelefones);
 			
-			/*for (Telefone fone : professor.getListTelefone()) {
-				telefoneDAO.excluir(fone);
-			}*/
-			
 			ProfessorDAO professorDAO = new ProfessorDAO();
 			professorDAO.excluir(professor);
 			listar();

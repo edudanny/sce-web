@@ -12,15 +12,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQueries({
+	@NamedQuery(name = Aluno.QUERY_SEARCH_ALU_RES, 
+				query = "select a from Aluno a where a.alurescodigo.rescodigo = :objeto ")
+})
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "alunos")
 public class Aluno implements Serializable {
+	
+	public static final String QUERY_SEARCH_ALU_RES = "Endereco.SearchAluRes";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +36,7 @@ public class Aluno implements Serializable {
 	private Integer alucodigo;
 
 	@Column(length = 6, nullable = false)
-	private Integer alumatricula;
+	private String alumatricula;
 
 	@Column(length = 80, nullable = false)
 	private String alunome;
@@ -37,7 +45,7 @@ public class Aluno implements Serializable {
 	private int alusexo;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date aludtnas;
 
 	@ManyToOne
@@ -61,11 +69,11 @@ public class Aluno implements Serializable {
 		this.alucodigo = alucodigo;
 	}
 
-	public Integer getAlumatricula() {
+	public String getAlumatricula() {
 		return alumatricula;
 	}
 
-	public void setAlumatricula(Integer alumatricula) {
+	public void setAlumatricula(String alumatricula) {
 		this.alumatricula = alumatricula;
 	}
 

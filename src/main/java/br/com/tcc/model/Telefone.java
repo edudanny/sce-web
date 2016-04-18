@@ -15,7 +15,9 @@ import javax.persistence.Table;
 
 @NamedQueries({
 	@NamedQuery(name = Telefone.QUERY_SEARCH_TEL_PROF, 
-				query = "select t from Telefone t where t.telprocodigo.procodigo = :idProfessor ")
+				query = "select t from Telefone t where t.telprocodigo.procodigo = :objeto "),
+	@NamedQuery(name = Telefone.QUERY_SEARCH_TEL_RES, 
+				query = "select t from Telefone t where t.telrescodigo.rescodigo = :objeto ")
 })
 @SuppressWarnings("serial")
 @Entity
@@ -23,6 +25,7 @@ import javax.persistence.Table;
 public class Telefone implements Serializable {
 	
 	public static final String QUERY_SEARCH_TEL_PROF = "Telefone.SearchTelProf";
+	public static final String QUERY_SEARCH_TEL_RES = "Telefone.SearchTelRes";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

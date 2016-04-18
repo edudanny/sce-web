@@ -9,11 +9,21 @@ import javax.faces.bean.SessionScoped;
 
 import org.omnifaces.util.Messages;
 
+import br.com.tcc.dao.AlunoDAO;
+import br.com.tcc.dao.AnoLetivoDAO;
+import br.com.tcc.dao.EnderecoDAO;
+import br.com.tcc.dao.MatriculaDAO;
 import br.com.tcc.dao.ResponsavelDAO;
+import br.com.tcc.dao.SecretariaDAO;
+import br.com.tcc.dao.TelefoneDAO;
 import br.com.tcc.model.Aluno;
+import br.com.tcc.model.AnoLetivo;
 import br.com.tcc.model.Endereco;
+import br.com.tcc.model.Matricula;
 import br.com.tcc.model.Responsavel;
+import br.com.tcc.model.Secretaria;
 import br.com.tcc.model.Telefone;
+import br.com.tcc.utils.Utilitario;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -31,14 +41,28 @@ public class MatricularBean implements Serializable {
 	private List<Aluno> listNovoAluno;
 	
 	private Endereco endereco;
-	private List<Telefone> listTelefone;
+	
+	private List<Telefone> listTelefones;
+	
+	private Secretaria secretaria;
+	
+	private List<AnoLetivo> listAnoLetivo;
+	
+	private Matricula matricula;
 	
 	public String listar(){
 		novo();
+		listTelefones = new ArrayList<Telefone>();
+		
+		listTelefones.add(new Telefone());
+		listTelefones.add(new Telefone());
 		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
 			listResponsavel = responsavelDAO.listar();
 			pesquisa = listResponsavel;
+			
+			AnoLetivoDAO anoLetivoDAO = new AnoLetivoDAO();
+			setListAnoLetivo(anoLetivoDAO.listar());
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os responsaveis");
 			erro.printStackTrace();
@@ -64,7 +88,45 @@ public class MatricularBean implements Serializable {
 	public String salvar(){
 		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
+			Utilitario utilitario = new Utilitario();
+			
 			responsavelDAO.salvar(responsavel);
+			
+			AlunoDAO alunoDAO = new AlunoDAO();
+			
+			MatriculaDAO matriculaDAO = new MatriculaDAO();
+			SecretariaDAO secretariaDAO = new SecretariaDAO();
+			
+			for (Aluno aluno : listAluno) {
+				aluno.setAlumatricula(utilitario.gerarRandomMatAluno());
+				aluno.setAlurescodigo(responsavel);
+				alunoDAO.salvar(aluno);
+				matricula.setSecretaria(secretariaDAO.buscar(1));
+				
+			}
+			
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			
+			endereco.setEndrescodigo(responsavel.getRescodigo());
+				
+			enderecoDAO.salvar(endereco);
+			
+			TelefoneDAO telefoneDAO = new TelefoneDAO();
+			
+			for (Telefone tel : listTelefones) {
+				tel.setTelrescodigo(responsavel);
+				telefoneDAO.merge(tel);
+			}
+			
+			
+			
+			listAluno = new ArrayList<Aluno>();
+			listNovoAluno = new ArrayList<Aluno>();
+			listNovoResponsavel = new ArrayList<Responsavel>();
+			listResponsavel = new ArrayList<Responsavel>();
+			listResponsavelAux = new ArrayList<Responsavel>();
+			listTelefones = new ArrayList<Telefone>();
+			
 			listar();
 			
 			return "/pages/matricula/listMatricula.xhtml?faces-redirect=true";
@@ -77,7 +139,6 @@ public class MatricularBean implements Serializable {
 	}
 	
 	public void salvarResponsavel() {
-		responsavel.setEndereco(endereco);
 		listNovoResponsavel.add(responsavel);
 		System.out.println("SALVO RESPONSAVEL");
 	}
@@ -111,6 +172,7 @@ public class MatricularBean implements Serializable {
 		listResponsavelAux = new ArrayList<Responsavel>();
 		listAluno = new ArrayList<Aluno>();
 		endereco = new Endereco();
+		
 	}
 	
 	public String novaMatricula(){
@@ -131,7 +193,20 @@ public class MatricularBean implements Serializable {
 	
 	public String editar(Responsavel resp){
 		responsavel = resp;
-		return "/pages/responsavel/responsavel.xhtml?faces-redirect=true";
+		
+		/*EnderecoDAO enderecoDAO = new EnderecoDAO();
+		List<Endereco> ends = enderecoDAO.buscar(Endereco.QUERY_SEARCH_END_RES, responsavel.getRescodigo());
+		endereco = ends.get(0);*/
+		
+		endereco = responsavel.getEndereco();
+		
+		TelefoneDAO telefoneDAO = new TelefoneDAO();
+		listTelefones = telefoneDAO.buscar(Telefone.QUERY_SEARCH_TEL_RES, responsavel.getRescodigo());
+		
+		AlunoDAO alunoDAO = new AlunoDAO();
+		listAluno = alunoDAO.buscar(Aluno.QUERY_SEARCH_ALU_RES, responsavel.getRescodigo());		
+		
+		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
 	}
 	
 	public Responsavel getResponsavel() {
@@ -171,12 +246,28 @@ public class MatricularBean implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public List<Telefone> getListTelefone() {
-		return listTelefone;
+	public List<Telefone> getListTelefones() {
+		return listTelefones;
 	}
 
-	public void setListTelefone(List<Telefone> listTelefone) {
-		this.listTelefone = listTelefone;
+	public void setListTelefones(List<Telefone> listTelefones) {
+		this.listTelefones = listTelefones;
+	}
+
+	public List<AnoLetivo> getListAnoLetivo() {
+		return listAnoLetivo;
+	}
+
+	public void setListAnoLetivo(List<AnoLetivo> listAnoLetivo) {
+		this.listAnoLetivo = listAnoLetivo;
+	}
+
+	public Matricula getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
 	}
 
 }
