@@ -1,37 +1,41 @@
 package br.com.tcc.utils;
 
-import java.util.Calendar;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.tcc.dao.AnoLetivoDAO;
+import br.com.tcc.dao.MatriculaDAO;
+import br.com.tcc.model.Aluno;
+import br.com.tcc.model.AnoLetivo;
+import br.com.tcc.model.Matricula;
+
 
 public class Test {
 	
 	public static void main(String[] args) {
 		
-		String resul = geraRandomMat();
+		MatriculaDAO dao = new MatriculaDAO();
+		List<Matricula> matriculas = new ArrayList<Matricula>();
 		
-		System.out.println(resul);		
 		
-	}
-	
-	public static String geraRandomMat(){
-		char[] chart = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-
-		char[] matricula = new char[4];
-
-		int chartLenght = chart.length;
-		Random rdm = new Random();
-
-		for (int x = 0; x < 2; x++) {
-			matricula[x] = chart[rdm.nextInt(chartLenght)];
+		AnoLetivo anoLetivo = new AnoLetivo();
+		AnoLetivoDAO anoLetivoDAO = new AnoLetivoDAO();
+		
+		anoLetivo = anoLetivoDAO.buscar(1);
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		
+		matriculas = dao.buscar(Matricula.QUERY_SEARCH_ALU, anoLetivo.getAnocodigo());
+		
+		for (Matricula matricula : matriculas) {
+			alunos.add(matricula.getAluno());
 		}
 		
-		Calendar data = Calendar.getInstance();
-		Integer ano = data.get(Calendar.YEAR);
-		String anoAtual = ano.toString();
+		for (Aluno aluno : alunos) {
+			System.out.println(aluno.getAlunome());
+		}
 		
-		String str = anoAtual + new String(matricula);
-
-		return new String(str);
+		
+		
 	}
 
 }

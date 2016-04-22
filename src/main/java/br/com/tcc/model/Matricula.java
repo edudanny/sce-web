@@ -9,12 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = Matricula.QUERY_SEARCH_ALU, 
+				query = "select m from Matricula m where m.anoLetivo.anocodigo = :objeto ")
+})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "matricula")
 public class Matricula implements Serializable {
+	
+	public static final String QUERY_SEARCH_ALU = "Endereco.SearchAlu";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)

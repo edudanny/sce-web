@@ -83,7 +83,7 @@ public class ProfessorBean implements Serializable {
 				professor.setPromatricula(util.gerarRandomMat());
 			}
 			
-			if (professor.getProcodigo().equals(null)) {
+			if (professor.getProcodigo() == null) {
 				professorDAO.salvar(professor);
 			} else {
 				professorDAO.editar(professor);

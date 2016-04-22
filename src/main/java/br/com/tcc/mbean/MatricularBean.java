@@ -49,6 +49,7 @@ public class MatricularBean implements Serializable {
 	private List<AnoLetivo> listAnoLetivo;
 	
 	private Matricula matricula;
+	private List<Matricula> listMatricula;
 	
 	public String listar(){
 		novo();
@@ -87,38 +88,37 @@ public class MatricularBean implements Serializable {
 	
 	public String salvar(){
 		try {
-			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
-			Utilitario utilitario = new Utilitario();
+			//ResponsavelDAO responsavelDAO = new ResponsavelDAO();
+			//Utilitario utilitario = new Utilitario();
 			
-			responsavelDAO.salvar(responsavel);
+			//responsavelDAO.salvar(responsavel);
 			
-			AlunoDAO alunoDAO = new AlunoDAO();
+			//AlunoDAO alunoDAO = new AlunoDAO();
 			
-			MatriculaDAO matriculaDAO = new MatriculaDAO();
+			/*MatriculaDAO matriculaDAO = new MatriculaDAO();
 			SecretariaDAO secretariaDAO = new SecretariaDAO();
+			secretaria = secretariaDAO.buscar(1);*/
 			
-			for (Aluno aluno : listAluno) {
+			/*for (Aluno aluno : listAluno) {
 				aluno.setAlumatricula(utilitario.gerarRandomMatAluno());
 				aluno.setAlurescodigo(responsavel);
 				alunoDAO.salvar(aluno);
-				matricula.setSecretaria(secretariaDAO.buscar(1));
+				matricula.setSecretaria(secretaria);
 				
-			}
+			}*/
 			
-			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			//EnderecoDAO enderecoDAO = new EnderecoDAO();
 			
-			endereco.setEndrescodigo(responsavel.getRescodigo());
+			//endereco.setEndrescodigo(responsavel.getRescodigo());
 				
-			enderecoDAO.salvar(endereco);
+			//enderecoDAO.salvar(endereco);
 			
-			TelefoneDAO telefoneDAO = new TelefoneDAO();
+			/*TelefoneDAO telefoneDAO = new TelefoneDAO();
 			
 			for (Telefone tel : listTelefones) {
 				tel.setTelrescodigo(responsavel);
 				telefoneDAO.merge(tel);
-			}
-			
-			
+			}*/			
 			
 			listAluno = new ArrayList<Aluno>();
 			listNovoAluno = new ArrayList<Aluno>();
@@ -139,18 +139,48 @@ public class MatricularBean implements Serializable {
 	}
 	
 	public void salvarResponsavel() {
-		listNovoResponsavel.add(responsavel);
+		ResponsavelDAO responsavelDAO = new ResponsavelDAO();
+		responsavelDAO.salvar(responsavel);
+		
+		EnderecoDAO enderecoDAO = new EnderecoDAO();		
+		endereco.setEndrescodigo(responsavel.getRescodigo());			
+		enderecoDAO.salvar(endereco);
+		
+		TelefoneDAO telefoneDAO = new TelefoneDAO();
+		
+		for (Telefone tel : listTelefones) {
+			tel.setTelrescodigo(responsavel);
+			telefoneDAO.salvar(tel);
+		}
+		
 		System.out.println("SALVO RESPONSAVEL");
 	}
 	
 	public void salvarAluno(Aluno alu) {
-		listNovoAluno.add(alu);
+		aluno = alu;
+		Utilitario utilitario = new Utilitario();
+		
+		AlunoDAO alunoDAO = new AlunoDAO();		
+		aluno.setAlumatricula(utilitario.gerarRandomMatAluno());
+		aluno.setAlurescodigo(responsavel);		
+		alunoDAO.salvar(aluno);
+		
+		SecretariaDAO secretariaDAO = new SecretariaDAO();
+		secretaria = secretariaDAO.buscar(6);
+		
+		MatriculaDAO matriculaDAO = new MatriculaDAO();
+		
+		matricula.setAluno(aluno);
+		matricula.setSecretaria(secretaria);
+		matriculaDAO.salvar(matricula);
+		
 		System.out.println("SALVO ALUNO ");
 	}
 	
 	public void addAluno() {
 		aluno = new Aluno();
-		listAluno.add(aluno);
+		listAluno.add(aluno);		
+		
 		System.out.println("ADICIONADO ALUNO");
 	}
 	
@@ -173,6 +203,7 @@ public class MatricularBean implements Serializable {
 		listAluno = new ArrayList<Aluno>();
 		endereco = new Endereco();
 		
+		matricula = new Matricula();
 	}
 	
 	public String novaMatricula(){

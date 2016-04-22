@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.tcc.utils.Menuable;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "anos")
-public class AnoLetivo implements Serializable {
+public class AnoLetivo implements Serializable, Menuable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,6 +64,11 @@ public class AnoLetivo implements Serializable {
 		} else if (!anocodigo.equals(other.anocodigo))
 			return false;
 		return true;
+	}
+
+	@Override
+	public Object getIdentifier() {
+		return getAnocodigo() != null ? getAnocodigo() : -1;
 	}
 
 }
