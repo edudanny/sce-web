@@ -3,22 +3,18 @@ package br.com.tcc.model;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import br.com.tcc.utils.Menuable;
-
 @SuppressWarnings("serial")
 @Entity
 @Table(name="prohabilitacoes")
-public class Habilitacao implements Serializable, Menuable {
+public class Habilitacao implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -91,10 +87,5 @@ public class Habilitacao implements Serializable, Menuable {
 			return false;
 		return true;
 	}
-
-	@Override
-	public Object getIdentifier() {
-		return getProhabcodigo() != null ? getProhabcodigo() : -1;
-	}
-	
+  
 }

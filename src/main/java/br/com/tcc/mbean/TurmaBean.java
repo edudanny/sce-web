@@ -11,7 +11,9 @@ import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.AnoLetivoDAO;
 import br.com.tcc.dao.TurmaDAO;
+import br.com.tcc.model.Aluno;
 import br.com.tcc.model.AnoLetivo;
+import br.com.tcc.model.Matricula;
 import br.com.tcc.model.Turma;
 
 @SuppressWarnings("serial")
@@ -24,7 +26,14 @@ public class TurmaBean implements Serializable {
 	private List<Turma> pesquisa;
 	private List<Turma> listTurmaAux;
 	
+	private List<Turma> listTurmaSalvar;
+	
 	private List<AnoLetivo> listAnoLetivo;
+	private AnoLetivo anoLetivo = new AnoLetivo();
+	
+	private List<Matricula> listMatricula = new ArrayList<Matricula>();
+	
+	private List<Aluno> listAluno = new ArrayList<Aluno>();
 	
 	public String listar(){
 		novo();
@@ -56,7 +65,8 @@ public class TurmaBean implements Serializable {
 	}
 	
 	public String salvar(){
-		try {
+		listTurmaSalvar = new ArrayList<Turma>();
+		try {			
 			TurmaDAO turmaDAO = new TurmaDAO();
 			turmaDAO.merge(turma);
 			listar();			
@@ -98,7 +108,7 @@ public class TurmaBean implements Serializable {
 		listAnoLetivo = new ArrayList<AnoLetivo>();
 		AnoLetivoDAO anoLetivoDAO = new AnoLetivoDAO();
 		listAnoLetivo = anoLetivoDAO.listar();
-		
+		turma.setAnoLetivo(listAnoLetivo.get(0));
 		return "/pages/turma/turma.xhtml?faces-redirect=true";
 	}
 	
@@ -127,6 +137,22 @@ public class TurmaBean implements Serializable {
 
 	public void setListAnoLetivo(List<AnoLetivo> listAnoLetivo) {
 		this.listAnoLetivo = listAnoLetivo;
+	}
+
+	public List<Aluno> getListAluno() {
+		return listAluno;
+	}
+
+	public void setListAluno(List<Aluno> listAluno) {
+		this.listAluno = listAluno;
+	}
+
+	public AnoLetivo getAnoLetivo() {
+		return anoLetivo;
+	}
+
+	public void setAnoLetivo(AnoLetivo anoLetivo) {
+		this.anoLetivo = anoLetivo;
 	}
 
 }

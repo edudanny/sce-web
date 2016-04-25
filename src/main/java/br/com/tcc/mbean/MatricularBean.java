@@ -16,6 +16,7 @@ import br.com.tcc.dao.MatriculaDAO;
 import br.com.tcc.dao.ResponsavelDAO;
 import br.com.tcc.dao.SecretariaDAO;
 import br.com.tcc.dao.TelefoneDAO;
+import br.com.tcc.dao.TurmaDAO;
 import br.com.tcc.model.Aluno;
 import br.com.tcc.model.AnoLetivo;
 import br.com.tcc.model.Endereco;
@@ -23,6 +24,7 @@ import br.com.tcc.model.Matricula;
 import br.com.tcc.model.Responsavel;
 import br.com.tcc.model.Secretaria;
 import br.com.tcc.model.Telefone;
+import br.com.tcc.model.Turma;
 import br.com.tcc.utils.Utilitario;
 
 @SuppressWarnings("serial")
@@ -34,11 +36,9 @@ public class MatricularBean implements Serializable {
 	private List<Responsavel> listResponsavel;
 	private List<Responsavel> pesquisa;
 	private List<Responsavel> listResponsavelAux;
-	private List<Responsavel> listNovoResponsavel;
 	
 	private Aluno aluno;
 	private List<Aluno> listAluno;
-	private List<Aluno> listNovoAluno;
 	
 	private Endereco endereco;
 	
@@ -49,14 +49,12 @@ public class MatricularBean implements Serializable {
 	private List<AnoLetivo> listAnoLetivo;
 	
 	private Matricula matricula;
-	private List<Matricula> listMatricula;
+	
+	private List<Turma> listTurma;
+	private Turma turma;
 	
 	public String listar(){
 		novo();
-		listTelefones = new ArrayList<Telefone>();
-		
-		listTelefones.add(new Telefone());
-		listTelefones.add(new Telefone());
 		try {
 			ResponsavelDAO responsavelDAO = new ResponsavelDAO();
 			listResponsavel = responsavelDAO.listar();
@@ -88,41 +86,7 @@ public class MatricularBean implements Serializable {
 	
 	public String salvar(){
 		try {
-			//ResponsavelDAO responsavelDAO = new ResponsavelDAO();
-			//Utilitario utilitario = new Utilitario();
-			
-			//responsavelDAO.salvar(responsavel);
-			
-			//AlunoDAO alunoDAO = new AlunoDAO();
-			
-			/*MatriculaDAO matriculaDAO = new MatriculaDAO();
-			SecretariaDAO secretariaDAO = new SecretariaDAO();
-			secretaria = secretariaDAO.buscar(1);*/
-			
-			/*for (Aluno aluno : listAluno) {
-				aluno.setAlumatricula(utilitario.gerarRandomMatAluno());
-				aluno.setAlurescodigo(responsavel);
-				alunoDAO.salvar(aluno);
-				matricula.setSecretaria(secretaria);
-				
-			}*/
-			
-			//EnderecoDAO enderecoDAO = new EnderecoDAO();
-			
-			//endereco.setEndrescodigo(responsavel.getRescodigo());
-				
-			//enderecoDAO.salvar(endereco);
-			
-			/*TelefoneDAO telefoneDAO = new TelefoneDAO();
-			
-			for (Telefone tel : listTelefones) {
-				tel.setTelrescodigo(responsavel);
-				telefoneDAO.merge(tel);
-			}*/			
-			
 			listAluno = new ArrayList<Aluno>();
-			listNovoAluno = new ArrayList<Aluno>();
-			listNovoResponsavel = new ArrayList<Responsavel>();
 			listResponsavel = new ArrayList<Responsavel>();
 			listResponsavelAux = new ArrayList<Responsavel>();
 			listTelefones = new ArrayList<Telefone>();
@@ -166,12 +130,13 @@ public class MatricularBean implements Serializable {
 		alunoDAO.salvar(aluno);
 		
 		SecretariaDAO secretariaDAO = new SecretariaDAO();
-		secretaria = secretariaDAO.buscar(6);
+		secretaria = secretariaDAO.buscar(8);
 		
 		MatriculaDAO matriculaDAO = new MatriculaDAO();
 		
 		matricula.setAluno(aluno);
 		matricula.setSecretaria(secretaria);
+		matricula.setTurma(turma);
 		matriculaDAO.salvar(matricula);
 		
 		System.out.println("SALVO ALUNO ");
@@ -203,14 +168,20 @@ public class MatricularBean implements Serializable {
 		listAluno = new ArrayList<Aluno>();
 		endereco = new Endereco();
 		
+		listTelefones = new ArrayList<Telefone>();
+		
+		listTelefones.add(new Telefone());
+		listTelefones.add(new Telefone());
+		
+		turma = new Turma();
+		
+		listTurma = new ArrayList<Turma>();
+		
 		matricula = new Matricula();
 	}
 	
 	public String novaMatricula(){
 		responsavel = new Responsavel();
-		
-		listNovoAluno = new ArrayList<Aluno>();
-		listNovoResponsavel = new ArrayList<Responsavel>();
 		
 		addAluno();
 		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
@@ -238,6 +209,13 @@ public class MatricularBean implements Serializable {
 		listAluno = alunoDAO.buscar(Aluno.QUERY_SEARCH_ALU_RES, responsavel.getRescodigo());		
 		
 		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
+	}
+	
+	public void listenerCarregarTurma() {
+		TurmaDAO turmaDAO = new TurmaDAO();
+		
+		listTurma = turmaDAO.buscar(Turma.QUERY_SEARCH_TUR, turma.getAnoLetivo().getAnocodigo());
+		
 	}
 	
 	public Responsavel getResponsavel() {
@@ -299,6 +277,22 @@ public class MatricularBean implements Serializable {
 
 	public void setMatricula(Matricula matricula) {
 		this.matricula = matricula;
+	}
+
+	public List<Turma> getListTurma() {
+		return listTurma;
+	}
+
+	public void setListTurma(List<Turma> listTurma) {
+		this.listTurma = listTurma;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 }

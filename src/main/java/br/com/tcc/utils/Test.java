@@ -14,10 +14,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 		
-		MatriculaDAO dao = new MatriculaDAO();
+		/*MatriculaDAO dao = new MatriculaDAO();
 		List<Matricula> matriculas = new ArrayList<Matricula>();
-		
-		
+				
 		AnoLetivo anoLetivo = new AnoLetivo();
 		AnoLetivoDAO anoLetivoDAO = new AnoLetivoDAO();
 		
@@ -32,8 +31,19 @@ public class Test {
 		
 		for (Aluno aluno : alunos) {
 			System.out.println(aluno.getAlunome());
-		}
-		
+			System.out.println(aluno.getAlurescodigo().getResnome());
+		}*/
+		char aux = 'C';
+		for (char ch = 'A'; ch <= 'Z'; ch++) {  
+		    //int i = ch;  // cast desnecessario, mas explicativo
+		    if (ch == aux) {
+		    	System.out.println(ch);
+			}
+		}  
+		/*for (int i = 65; i <= 90; i++) {  
+		    char ch = (char) i;  
+		    System.out.println(i + "  " + ch);  
+		} */ 
 		
 		
 	}

@@ -47,5 +47,13 @@ public class Utilitario {
 
 		return new String(str);
 	}
+	
+	public String gerarNomeTurma() {
+		for (int i = 65; i <= 90; i++) {  
+		    char ch = (char) i;  
+		    System.out.println(i + "  " + ch);  
+		}
+		return null;
+	}
 
 }

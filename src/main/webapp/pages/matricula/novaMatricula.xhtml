@@ -170,15 +170,32 @@
 								
 								<div class="form-group">
 			    					<label>Ano</label>
-									<h:selectOneMenu id="habilicacao" 
+									<h:selectOneMenu id="ano" 
 													 styleClass="form-control"
-													 value="#{matricularBean.matricula.anoLetivo}"
+													 value="#{matricularBean.turma.anoLetivo}"
 													 converter="omnifaces.SelectItemsConverter">
 										<f:selectItem itemValue="" 
 										  			  itemLabel=" -- Selecione -- "/>
 										<f:selectItems value="#{matricularBean.listAnoLetivo}" 
 										   			   var="ano" itemValue="#{ano}" 
 										   			   itemLabel="#{ano.anonome}"/>
+										<f:ajax event="change" execute="ano"
+												listener="#{matricularBean.listenerCarregarTurma}"
+												render="turma"/>
+									</h:selectOneMenu>
+			    				</div>
+			    				
+			    				<div class="form-group">
+			    					<label>Turma</label>
+									<h:selectOneMenu id="turma" 
+													 styleClass="form-control"
+													 value="#{matricularBean.turma}"
+													 converter="omnifaces.SelectItemsConverter">
+										<f:selectItem itemValue="" 
+										  			  itemLabel=" -- Selecione -- "/>
+										<f:selectItems value="#{matricularBean.listTurma}" 
+										   			   var="turma" itemValue="#{turma}" 
+										   			   itemLabel="#{turma.turnome}"/>
 									</h:selectOneMenu>
 			    				</div>
 								

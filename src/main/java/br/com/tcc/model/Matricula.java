@@ -9,21 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
-@NamedQueries({
-	@NamedQuery(name = Matricula.QUERY_SEARCH_ALU, 
-				query = "select m from Matricula m where m.anoLetivo.anocodigo = :objeto ")
-})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "matricula")
 public class Matricula implements Serializable {
-	
-	public static final String QUERY_SEARCH_ALU = "Endereco.SearchAlu";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,8 +30,8 @@ public class Matricula implements Serializable {
     private Secretaria secretaria;
     
     @ManyToOne
-    @JoinColumn(name = "matanocodigo", referencedColumnName = "anocodigo")
-    private AnoLetivo anoLetivo;
+    @JoinColumn(name = "matturcodigo", referencedColumnName = "turcodigo")
+    private Turma turma;
 
 	public Integer getMatcodigo() {
 		return matcodigo;
@@ -66,12 +57,12 @@ public class Matricula implements Serializable {
 		this.secretaria = secretaria;
 	}
 
-	public AnoLetivo getAnoLetivo() {
-		return anoLetivo;
+	public Turma getTurma() {
+		return turma;
 	}
 
-	public void setAnoLetivo(AnoLetivo anoLetivo) {
-		this.anoLetivo = anoLetivo;
+	public void setTurma(Turma turma) {
+		this.turma = turma;
 	}
 
 	@Override

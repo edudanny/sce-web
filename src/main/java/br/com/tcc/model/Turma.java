@@ -5,19 +5,27 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = Turma.QUERY_SEARCH_TUR, 
+				query = "select t from Turma t where t.anoLetivo.anocodigo = :objeto ")
+})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "turmas")
 public class Turma implements Serializable {
+	
+	public static final String QUERY_SEARCH_TUR = "Turma.SearchTur";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

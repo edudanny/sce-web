@@ -36,33 +36,32 @@
 							converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{turmaBean.listAnoLetivo}" 
 										   var="ano" itemValue="#{ano}" itemLabel="#{ano.anonome}"/>
+							<f:ajax event="change" execute="ano" 
+									listener="#{turmaBean.contarAlunos}"
+									render="totalAlunos opcaoAno" />
 					</h:selectOneMenu>
 			    </div>
-
+			    
+			    <!-- text input -->
 			    <div class="form-group">
-			    	<label>Turma</label>
-			    	<h:inputText value="#{turmaBean.turma.turnome}" 
-			    				 styleClass="form-control" 
-			    				 pt:placeholder="Nome da turma"
-			    				 required="true"
-			    				 requiredMessage="Campo Obrigatório"
-			    				 id="nome"
-			    				 />
-			    	<h:message for="nome" style="color: red"/>
+			    	<label>
+			    		<h:outputText id="opcaoAno" value="Total de alunos no #{turmaBean.turma.anoLetivo.anonome} ano:" />
+			    	</label>
+			    	<h:inputText id="totalAlunos" value="#{turmaBean.totalAlunos}" 
+			    				 styleClass="form-control" disabled="true"/>
 				</div>
-
+				
 				<div class="form-group">
-			    	<label>Sala</label>
-			    	<h:inputText value="#{turmaBean.turma.tursala}" 
+			    	<label>Quatidade de alunos por turma</label>
+			    	<h:inputText value="#{turmaBean.qtdMaxAlunos}" 
 			    				 styleClass="form-control" 
-			    				 pt:placeholder="Digite a sala"
-			    				 required="true"
-			    				 requiredMessage="Campo Obrigatório"
-			    				 id="sala"
-			    				 />
-			    	<h:message for="sala" style="color: red"/>
-				</div>				 
+			    				 id="max" pt:type="number" pt:min="1" />
+				</div>
+			    
 
+				
+				 
+			
 			    <div class="modal-footer-sce">
 			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 
 			        				 action="#{turmaBean.salvar}"/>
