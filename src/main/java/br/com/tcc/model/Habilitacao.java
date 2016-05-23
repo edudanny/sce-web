@@ -27,6 +27,9 @@ public class Habilitacao implements Serializable {
 	@Column(length=255,nullable=false)
 	private String prohabdesc;
 	
+	@Column(length = 1, nullable = false)
+	private int prohabfundamental;
+	
 	@OneToMany(mappedBy = "habilitacao")
     private List<Professor> professores;
 	
@@ -60,6 +63,14 @@ public class Habilitacao implements Serializable {
 
 	public void setProfessores(List<Professor> professores) {
 		this.professores = professores;
+	}
+
+	public int getProhabfundamental() {
+		return prohabfundamental;
+	}
+
+	public void setProhabfundamental(int prohabfundamental) {
+		this.prohabfundamental = prohabfundamental;
 	}
 
 	@Override

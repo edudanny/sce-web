@@ -130,7 +130,7 @@ public class MatricularBean implements Serializable {
 		alunoDAO.salvar(aluno);
 		
 		SecretariaDAO secretariaDAO = new SecretariaDAO();
-		secretaria = secretariaDAO.buscar(8);
+		secretaria = secretariaDAO.buscar(1);
 		
 		MatriculaDAO matriculaDAO = new MatriculaDAO();
 		
