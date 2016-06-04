@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.tcc</groupId>
-	<artifactId>sce-web</artifactId>
+	<artifactId>free</artifactId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
 	<name>SCE</name>
-	<description>Sistema de Controle Escolar</description>
+	<description>Frequencia Escolar</description>
 	
 	<!-- Codificação dos caracteres -->
 	<properties>
@@ -16,7 +16,7 @@
 	<!-- Parâmetros de execução -->
 	<build>
 		<!-- Nome do projeto empacotado -->
-		<finalName>sce-web</finalName>
+		<finalName>free</finalName>
 
 		<!-- Plugins -->
 		<plugins>
