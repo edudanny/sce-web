@@ -26,8 +26,8 @@ public class AnoLetivo implements Serializable, Menuable {
 	@Column(length = 2, nullable = false, unique = true)
 	private String anonome;
 	
-	@OneToMany(mappedBy = "turanocodigo")
-    private List<Turma> turmasList;
+	@OneToMany(mappedBy = "anoLetivo")
+    private List<Turma> turmaList;
 
 	public Integer getAnocodigo() {
 		return this.anocodigo;
@@ -43,6 +43,14 @@ public class AnoLetivo implements Serializable, Menuable {
 
 	public void setAnonome(String anonome) {
 		this.anonome = anonome;
+	}
+
+	public List<Turma> getTurmaList() {
+		return turmaList;
+	}
+
+	public void setTurmaList(List<Turma> turmaList) {
+		this.turmaList = turmaList;
 	}
 
 	@Override

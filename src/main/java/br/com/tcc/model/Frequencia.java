@@ -25,11 +25,11 @@ public class Frequencia implements Serializable {
 	private Long frecodigo;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fredata;
 
 	@Column(name = "frefrequencia")
-	private int frefrequencia;
+	private boolean frefrequencia;
 
 	@ManyToOne
 	@JoinColumn(name = "frealucodigo", referencedColumnName = "alucodigo")
@@ -55,11 +55,11 @@ public class Frequencia implements Serializable {
 		this.fredata = fredata;
 	}
 
-	public int getFrefrequencia() {
+	public boolean getFrefrequencia() {
 		return frefrequencia;
 	}
 
-	public void setFrefrequencia(int frefrequencia) {
+	public void setFrefrequencia(boolean frefrequencia) {
 		this.frefrequencia = frefrequencia;
 	}
 

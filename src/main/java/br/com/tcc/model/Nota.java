@@ -28,7 +28,7 @@ public class Nota implements Serializable {
 	private String notdescricao;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date notdata;
 
 	@Column(name = "notvalor")

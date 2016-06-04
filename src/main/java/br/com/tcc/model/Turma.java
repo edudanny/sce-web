@@ -45,8 +45,8 @@ public class Turma implements Serializable {
 	@JoinColumn(name = "turanocodigo", referencedColumnName = "anocodigo")
 	private AnoLetivo anoLetivo;
 	
-	@OneToMany(mappedBy = "matturcodigo")
-    private List<Matricula> matriculaList;
+	@OneToMany(mappedBy = "turma")
+    private List<Matricula> listMatricula;
 
 	public Integer getTurcodigo() {
 		return turcodigo;
@@ -88,12 +88,12 @@ public class Turma implements Serializable {
 		this.anoLetivo = anoLetivo;
 	}
 
-	public List<Matricula> getMatriculaList() {
-		return matriculaList;
+	public List<Matricula> getListMatricula() {
+		return listMatricula;
 	}
 
-	public void setMatriculaList(List<Matricula> matriculaList) {
-		this.matriculaList = matriculaList;
+	public void setListMatricula(List<Matricula> listMatricula) {
+		this.listMatricula = listMatricula;
 	}
 
 	@Override

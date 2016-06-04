@@ -27,7 +27,7 @@ public class Secretaria implements Serializable{
 	@OneToMany(mappedBy = "ageseccodigo")
     private List<Agenda> listAgenda;
     
-    @OneToMany(mappedBy = "matseccodigo")
+    @OneToMany(mappedBy = "secretaria")
     private List<Matricula> listMatricula;
 	
 	public Integer getSeccodigo(){
