@@ -40,6 +40,9 @@ public class Professor implements Serializable {
 
 	@OneToMany(mappedBy = "minprocodigo")
 	private List<Ministra> listMinistra;
+	
+	@OneToMany(mappedBy = "usuprocodigo")
+    private List<Usuario> usuariosList;
 
 	@OneToMany(mappedBy = "telprocodigo", orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Telefone> listTelefone;
@@ -94,6 +97,14 @@ public class Professor implements Serializable {
 
 	public void setHabilitacao(Habilitacao habilitacao) {
 		this.habilitacao = habilitacao;
+	}
+
+	public List<Usuario> getUsuariosList() {
+		return usuariosList;
+	}
+
+	public void setUsuariosList(List<Usuario> usuariosList) {
+		this.usuariosList = usuariosList;
 	}
 
 	@Override

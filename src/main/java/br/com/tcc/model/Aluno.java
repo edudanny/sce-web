@@ -47,6 +47,12 @@ public class Aluno implements Serializable {
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date aludtnas;
+	
+	@Column(nullable = false)
+    private String aluparentesco;
+	
+	@Column(nullable = false)
+    private boolean alustatus;
 
 	@ManyToOne
 	@JoinColumn(name = "alurescodigo", referencedColumnName = "rescodigo")
@@ -131,6 +137,22 @@ public class Aluno implements Serializable {
 
 	public void setListNota(List<Nota> listNota) {
 		this.listNota = listNota;
+	}
+
+	public String getAluparentesco() {
+		return aluparentesco;
+	}
+
+	public void setAluparentesco(String aluparentesco) {
+		this.aluparentesco = aluparentesco;
+	}
+
+	public boolean isAlustatus() {
+		return alustatus;
+	}
+
+	public void setAlustatus(boolean alustatus) {
+		this.alustatus = alustatus;
 	}
 
 	@Override

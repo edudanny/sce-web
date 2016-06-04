@@ -28,7 +28,7 @@ public class Habilitacao implements Serializable {
 	private String prohabdesc;
 	
 	@Column(length = 1, nullable = false)
-	private int prohabfundamental;
+	private boolean prohabfundamental;
 	
 	@OneToMany(mappedBy = "habilitacao")
     private List<Professor> professores;
@@ -65,11 +65,11 @@ public class Habilitacao implements Serializable {
 		this.professores = professores;
 	}
 
-	public int getProhabfundamental() {
+	public boolean getProhabfundamental() {
 		return prohabfundamental;
 	}
 
-	public void setProhabfundamental(int prohabfundamental) {
+	public void setProhabfundamental(boolean prohabfundamental) {
 		this.prohabfundamental = prohabfundamental;
 	}
 

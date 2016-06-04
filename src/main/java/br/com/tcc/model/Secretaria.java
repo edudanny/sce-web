@@ -1,12 +1,14 @@
 package br.com.tcc.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -22,6 +24,12 @@ public class Secretaria implements Serializable{
 	@Column(length=80)
 	private String secnome;
 	
+	@OneToMany(mappedBy = "ageseccodigo")
+    private List<Agenda> listAgenda;
+    
+    @OneToMany(mappedBy = "matseccodigo")
+    private List<Matricula> listMatricula;
+	
 	public Integer getSeccodigo(){
 		return this.seccodigo;
 	}
@@ -36,6 +44,22 @@ public class Secretaria implements Serializable{
 	
 	public void setSecnome(String secnome){
 		this.secnome = secnome;
+	}
+
+	public List<Agenda> getListAgenda() {
+		return listAgenda;
+	}
+
+	public void setListAgenda(List<Agenda> listAgenda) {
+		this.listAgenda = listAgenda;
+	}
+
+	public List<Matricula> getListMatricula() {
+		return listMatricula;
+	}
+
+	public void setListMatricula(List<Matricula> listMatricula) {
+		this.listMatricula = listMatricula;
 	}
 
 }

@@ -32,11 +32,11 @@ public class Responsavel implements Serializable {
 	@Column(nullable = false)
 	private String resrg;
 
-	@Column(length = 10, nullable = false)
-	private String resparentesco;
-
 	@OneToMany(mappedBy = "alurescodigo")
 	private List<Aluno> listAluno;
+	
+    @OneToMany(mappedBy = "usurescodigo")
+    private List<Usuario> listUsuario;
 
 	@OneToMany(mappedBy = "telrescodigo")
 	private List<Telefone> lisTelefone;
@@ -76,14 +76,6 @@ public class Responsavel implements Serializable {
 		this.resrg = resrg;
 	}
 
-	public String getResparentesco() {
-		return resparentesco;
-	}
-
-	public void setResparentesco(String resparentesco) {
-		this.resparentesco = resparentesco;
-	}
-
 	public List<Aluno> getListAluno() {
 		return listAluno;
 	}
@@ -106,6 +98,14 @@ public class Responsavel implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public List<Usuario> getListUsuario() {
+		return listUsuario;
+	}
+
+	public void setListUsuario(List<Usuario> listUsuario) {
+		this.listUsuario = listUsuario;
 	}
 
 	@Override
