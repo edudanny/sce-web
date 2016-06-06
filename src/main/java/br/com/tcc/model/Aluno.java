@@ -61,10 +61,10 @@ public class Aluno implements Serializable {
 	@OneToMany(mappedBy = "frealucodigo")
 	private List<Frequencia> listFrequencia;
 
-	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "aluno")
 	private List<Matricula> listMatricula;
 
-	@OneToMany(mappedBy = "notalucodigo", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "notalucodigo")
 	private List<Nota> listNota;
 
 	public Integer getAlucodigo() {
