@@ -132,7 +132,7 @@ public class RelatorioBean implements Serializable {
 	        
 	        
 	        document.add(table);
-	        
+	        document.add(new Paragraph("Total de alunos matriculados: " + listaMatricula));
 	        // step 5
 	        document.close();
 
