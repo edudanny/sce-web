@@ -9,12 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = Matricula.QUERY_QTD_ALUNO_ANO, 
+				query = "select m from Matricula m where m.turma.anoLetivo.anonome = :objeto ")
+})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "matricula")
 public class Matricula implements Serializable {
+	
+	public static final String QUERY_QTD_ALUNO_ANO = "Matricula.QtdAlunoPorAno";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
