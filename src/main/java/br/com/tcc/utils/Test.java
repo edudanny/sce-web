@@ -3,12 +3,17 @@ package br.com.tcc.utils;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.tcc.dao.AlunoDAO;
 import br.com.tcc.dao.AnoLetivoDAO;
+import br.com.tcc.dao.FrequenciaDAO;
 import br.com.tcc.dao.MatriculaDAO;
+import br.com.tcc.model.Aluno;
 import br.com.tcc.model.AnoLetivo;
+import br.com.tcc.model.Frequencia;
 import br.com.tcc.model.Matricula;
 import br.com.tcc.model.Telefone;
 
@@ -44,7 +49,7 @@ public class Test {
 		document.close();
 	}*/
 	
-	public static void main(String[] args) throws IOException, DocumentException {
+	/*public static void main(String[] args) throws IOException, DocumentException {
 		String dest = "/home/eduardo/teste.pdf";
 		Document document = new Document(PageSize.A4.rotate());
 		PdfWriter.getInstance(document, new FileOutputStream(dest));
@@ -93,8 +98,28 @@ public class Test {
         }
         document.add(table);
         document.close();
+	}*/
+	
+	public static void main(String[] args) {
+		AlunoDAO alunoDAO = new AlunoDAO();
+		FrequenciaDAO frequenciaDAO = new FrequenciaDAO();
+		
+		Aluno aluno = new Aluno();
+		
+		aluno = alunoDAO.buscar(1);
+		
+		aluno.setListFrequencia(frequenciaDAO.buscar(Frequencia.QUERY_SEARCH_FREQ_ALU, aluno.getAlucodigo()));
+		
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
+		
+		System.out.println("Aluno: " + aluno.getAlunome());
+		for (Frequencia frequencia : aluno.getListFrequencia()) {
+			if (frequencia.getFrefrequencia()) {
+				System.out.println("Data: " + dt.format(frequencia.getFredata()) + " - Presente");
+			} else {
+				System.out.println("Data: " + dt.format(frequencia.getFredata()) + " - Ausente");
+			}
+		}
 	}
-	
-	
 
 }

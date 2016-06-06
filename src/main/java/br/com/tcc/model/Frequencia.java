@@ -10,14 +10,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQueries({
+	@NamedQuery(name = Frequencia.QUERY_SEARCH_FREQ_ALU, 
+				query = "select f from Frequencia f where f.frealucodigo.alucodigo = :objeto ")
+})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "frequencia")
 public class Frequencia implements Serializable {
+	
+	public static final String QUERY_SEARCH_FREQ_ALU = "Frequencia.SearchFreqAlu";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

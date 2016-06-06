@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
 @Table(name = "alunos")
 public class Aluno implements Serializable {
 	
-	public static final String QUERY_SEARCH_ALU_RES = "Endereco.SearchAluRes";
+	public static final String QUERY_SEARCH_ALU_RES = "Aluno.SearchAluRes";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -65,7 +65,7 @@ public class RelatorioBean implements Serializable {
 		
 	}
 	
-	public void gerarRelatorio() {
+	public void gerarRelatorioAlunosAnos() {
 		FacesContext context = FacesContext.getCurrentInstance(); 
 	    HttpServletResponse response = (HttpServletResponse)context.getExternalContext().getResponse();  
 	    response.setContentType("application/pdf");  
