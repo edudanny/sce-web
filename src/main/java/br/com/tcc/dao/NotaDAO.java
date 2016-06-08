@@ -4,17 +4,17 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
-import br.com.tcc.model.Secretaria;
+import br.com.tcc.model.Nota;
 import br.com.tcc.utils.HibernateUtil;
 
-public class SecretariaDAO extends GenericDAO<Secretaria>{
+public class NotaDAO extends GenericDAO<Nota> {
 	
-	public Secretaria buscarNomeSecretaria(String nome) {
+	public Nota buscarPorData(String data) {
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try{
-			Criteria consulta = sessao.createCriteria(Secretaria.class);
-			consulta.addOrder(Order.asc(nome));
-			Secretaria resultado = (Secretaria) consulta.uniqueResult();
+			Criteria consulta = sessao.createCriteria(Nota.class);
+			consulta.addOrder(Order.asc(data));
+			Nota resultado = (Nota) consulta.uniqueResult();
 			return resultado;
 		} catch (RuntimeException erro){
 			throw erro;
@@ -22,5 +22,5 @@ public class SecretariaDAO extends GenericDAO<Secretaria>{
 			sessao.close();
 		}
 	}
-	
+
 }
