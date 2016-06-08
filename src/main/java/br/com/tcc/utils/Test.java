@@ -113,11 +113,12 @@ public class Test {
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
 		
 		System.out.println("Aluno: " + aluno.getAlunome());
-		for (Frequencia frequencia : aluno.getListFrequencia()) {
-			if (frequencia.getFrefrequencia()) {
-				System.out.println("Data: " + dt.format(frequencia.getFredata()) + " - Presente");
+		//for (Frequencia frequencia : aluno.getListFrequencia()) {
+		for (int i = 0; i < aluno.getListFrequencia().size(); i++) {
+			if (aluno.getListFrequencia().get(i).getFrefrequencia() /*frequencia.getFrefrequencia()*/) {
+				System.out.println("Data: " + dt.format(aluno.getListFrequencia().get(i).getFredata()) + " - Presente");
 			} else {
-				System.out.println("Data: " + dt.format(frequencia.getFredata()) + " - Ausente");
+				System.out.println("Data: " + dt.format(aluno.getListFrequencia().get(i).getFredata()) + " - Ausente");
 			}
 		}
 	}

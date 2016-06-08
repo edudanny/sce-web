@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/pages/template/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				Lista de Alunos
+			</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#">
+						<i class="fa fa-dashboard"></i>
+						Início
+					</a>
+				</li>
+				<li class="active">Relatorio</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+			<h:form id="formPesquisa">				
+				
+				
+				<div class="input-group-sce input-group-sm">
+                      <h:inputText id="pesquisaAluno" class="form-control" 
+                      			   value="#{relatorioBean.aluno.alunome}"
+								   pt:placeholder="nome do aluno"/>
+                </div>
+                <div class="input-group-sce input-group-sm">
+                      <h:inputText id="pesquisaMat" class="form-control" 
+                      			   pt:placeholder="matricula do aluno"
+                      			   value="#{relatorioBean.aluno.alumatricula}"/>
+                </div>
+                <br/>
+                <h:commandButton class="btn btn-info btn-flat" value="Pesquisar" 
+								 action="#{relatorioBean.pesquisarAluno}" style="margin-left: 435px"/>
+				</h:form>
+				
+				<h:form id="formListagem" target="_blank">	
+				<div class="col-md-12-sce">
+					<p:dataTable styleClass="table table-bordered" id="tabela"
+								 emptyMessage="Nenhum registro encontrado."
+								 paginator="true" paginatorPosition="bottom"
+								 value="#{relatorioBean.listAluno}" var="alu"
+								 rows="10">
+						<p:column sortBy="#{alu.alunome}">
+							<f:facet name="header">
+								<h:outputText value="Aluno"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{alu.alunome}"></h:outputText>
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Matricula"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{alu.alumatricula}"></h:outputText>
+						</p:column>
+						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Matriculado"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{alu.alustatus}"></h:outputText>
+						</p:column>
+						
+						<p:column width="200">
+							<f:facet name="header">
+								<h:outputText value="Ações"/>
+							</f:facet>
+							<h:commandLink>
+								<h:commandLink action="#{relatorioBean.gerarRelatorioFrequencia(alu)}">
+									<h:graphicImage url="/resources/img/edit_32x32.png" height="25" width="25" title="Clique para Editar" />
+								</h:commandLink>
+							</h:commandLink>
+						</p:column>
+					</p:dataTable>			    
+				</div>
+			</h:form>
+		</section><!-- /.content -->
+	</ui:define>
+</ui:composition>

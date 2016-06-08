@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +20,11 @@ import javax.persistence.TemporalType;
 
 @NamedQueries({
 	@NamedQuery(name = Aluno.QUERY_SEARCH_ALU_RES, 
-				query = "select a from Aluno a where a.alurescodigo.rescodigo = :objeto ")
+				query = "select a from Aluno a where a.alurescodigo.rescodigo = :objeto "),
+	@NamedQuery(name = Aluno.QUERY_SEARCH_ALU_NOME, 
+				query = "select a from Aluno a where a.alunome like :objeto "),
+	@NamedQuery(name = Aluno.QUERY_SEARCH_ALU_MAT, 
+				query = "select a from Aluno a where a.alumatricula like :objeto ")
 })
 @SuppressWarnings("serial")
 @Entity
@@ -29,6 +32,8 @@ import javax.persistence.TemporalType;
 public class Aluno implements Serializable {
 	
 	public static final String QUERY_SEARCH_ALU_RES = "Aluno.SearchAluRes";
+	public static final String QUERY_SEARCH_ALU_NOME = "Aluno.SearchAluNome";
+	public static final String QUERY_SEARCH_ALU_MAT = "Aluno.SearchAluMat";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

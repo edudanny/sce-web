@@ -30,26 +30,30 @@
 		</section>
 		<!-- Main content -->
 		<section class="content">
-			<h:form id="formListagem" target="_blank">
-				<div class="input-group-sce input-group-sm">
+			
+			<div class="input-group-sce input-group-sm">
+				<h:form id="formRelAno" target="_blank">
 					<tr>
 						<td>
 							<h:commandButton style="margin-left: 80%; margin-top: 40%;" 
 											 class="btn btn-block btn-primary btn-lg" 
 											 value="Porcentagem de Alunos por Ano" 
-										 	 action="#{relatorioBean.gerarRelatorio}"/>
+										 	 action="#{relatorioBean.gerarRelatorioAlunosAnos}"/>
 						</td>
 					</tr>
+				</h:form>
+				<br />
+				<h:form id="formRelAluno">
 					<tr>
 						<td>
 							<h:commandButton style="margin-left: 80%;" 
 											 class="btn btn-block btn-primary btn-lg" 
 											 value="Frequência individual" 
-										 	 action="#{relatorioBean.gerarRelatorio}"/>
+										 	 action="#{relatorioBean.prepararFrequencia}"/>
 						</td>
 					</tr>
-				</div>
-			</h:form>
+				</h:form>
+			</div>
 		</section><!-- /.content -->
 	</ui:define>
 </ui:composition>
