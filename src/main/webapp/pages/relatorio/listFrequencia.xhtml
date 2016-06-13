@@ -15,7 +15,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Lista de Alunos
+				Pesquisa Aluno
 			</h1>
 			<ol class="breadcrumb">
 				<li>
@@ -42,9 +42,20 @@
                       			   pt:placeholder="matricula do aluno"
                       			   value="#{relatorioBean.aluno.alumatricula}"/>
                 </div>
+                
+                <div class="input-group-sce input-group-sm">
+                	<label>Disciplina</label>
+					<h:selectOneMenu id="turma" styleClass="form-control" value="#{relatorioBean.disciplina}"
+									 converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemValue="" itemLabel=" -- Selecione -- "/>
+						<f:selectItems value="#{relatorioBean.listDisciplina}" var="disciplina" itemValue="#{disciplina}" 
+							   		   itemLabel="#{disciplina.disnome}"/>
+					</h:selectOneMenu>
+				</div>
                 <br/>
-                <h:commandButton class="btn btn-info btn-flat" value="Pesquisar" 
-								 action="#{relatorioBean.pesquisarAluno}" style="margin-left: 435px"/>
+
+				<h:commandButton styleClass="btn btn-block btn-primary" value="Pesquisar" 
+				    			 action="#{relatorioBean.pesquisarAluno}" style="width: 12%; margin-left: 28%;"/>
 				</h:form>
 				
 				<h:form id="formListagem" target="_blank">	
@@ -70,18 +81,18 @@
 						
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Matriculado"></h:outputText>
+								<h:outputText value="Status"></h:outputText>
 							</f:facet>
 							<h:outputText value="#{alu.alustatus}"></h:outputText>
 						</p:column>
 						
 						<p:column width="200">
 							<f:facet name="header">
-								<h:outputText value="Ações"/>
+								<h:outputText value="Relatório"/>
 							</f:facet>
 							<h:commandLink>
 								<h:commandLink action="#{relatorioBean.gerarRelatorioFrequencia(alu)}">
-									<h:graphicImage url="/resources/img/edit_32x32.png" height="25" width="25" title="Clique para Editar" />
+									<h:graphicImage url="/resources/img/pdf.png" height="25" width="25" title="Clique para Editar" />
 								</h:commandLink>
 							</h:commandLink>
 						</p:column>

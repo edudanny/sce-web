@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.omnifaces.util.Messages;
 
-import br.com.tcc.dao.HabilitacaoDAO;
 import br.com.tcc.dao.SecretariaDAO;
-import br.com.tcc.model.Habilitacao;
 import br.com.tcc.model.Secretaria;
 
 @ManagedBean
@@ -56,11 +53,16 @@ public class SecretariaBean implements Serializable{
 	public String salvar(){
 		try {
 			SecretariaDAO secretariaDAO = new SecretariaDAO();
-			secretariaDAO.merge(secretaria);
-			listar();			
+			
+			if (secretaria.getSeccodigo() != null) {
+				secretariaDAO.editar(secretaria);
+			} else {
+				secretariaDAO.salvar(secretaria);
+			}
+			listar();	
 			return "/pages/secretaria/listSecretaria.xhtml?faces-redirect=true";
 		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar cadastrar a secretária");
+			Messages.addGlobalError("Ocorreu um erro ao tentar salvar informações da secretária");
 			erro.printStackTrace();
 		}
 		return "";
@@ -68,8 +70,9 @@ public class SecretariaBean implements Serializable{
 	
 	public void excluir(Secretaria secretaria){
 		try {
-			SecretariaDAO secretariaDAO = new SecretariaDAO();			
-			secretariaDAO.excluir(secretaria);
+			SecretariaDAO secretariaDAO = new SecretariaDAO();
+			secretaria.setSecstatus(false);
+			secretariaDAO.editar(secretaria);
 			listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir a secretária");

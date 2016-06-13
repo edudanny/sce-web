@@ -18,10 +18,12 @@ import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.AlunoDAO;
 import br.com.tcc.dao.AnoLetivoDAO;
+import br.com.tcc.dao.DisciplinaDAO;
 import br.com.tcc.dao.FrequenciaDAO;
 import br.com.tcc.dao.MatriculaDAO;
 import br.com.tcc.model.Aluno;
 import br.com.tcc.model.AnoLetivo;
+import br.com.tcc.model.Disciplina;
 import br.com.tcc.model.Frequencia;
 import br.com.tcc.model.Matricula;
 
@@ -44,10 +46,14 @@ public class RelatorioBean implements Serializable {
 	
 	private Aluno aluno;
 	private List<Aluno> listAluno;
+	private List<Disciplina> listDisciplina;
+	private Disciplina disciplina;
 	
 	public String listar() {
 		novo();
 		try {
+			DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+			listDisciplina = disciplinaDAO.listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar as relatórios");
 			erro.printStackTrace();
@@ -107,11 +113,20 @@ public class RelatorioBean implements Serializable {
 	        table.getDefaultCell().setBackgroundColor(new GrayColor(0.75f));
 	        
 	        document.add(new Paragraph("Aluno(a): " + alu.getAlunome()));
+	        
+	        FrequenciaDAO frequenciaDAO = new FrequenciaDAO();
+			
+			alu.setListFrequencia(frequenciaDAO.buscar(Frequencia.QUERY_SEARCH_FREQ_ALU, alu.getAlucodigo()));
+	        
+	        document.add(new Paragraph("Turma: " + alu.getListFrequencia().get(0).getFremincodigo().getMinturcodigo().getTurnome()));
+	        document.add(new Paragraph("Disciplina: " + alu.getListFrequencia().get(0).getFremincodigo().getMindiscodigo().getDisnome()));
+	        document.add(new Paragraph("Professor(a): " + alu.getListFrequencia().get(0).getFremincodigo().getMinprocodigo().getPronome()));	        
+	        	        
 	        document.add(new Paragraph(" "));
 	        
 	        for (int i = 0; i < 2; i++) {
 	            table.addCell("Data");
-	            table.addCell("Frequencia");
+	            table.addCell("Situação");
 	        }
 	        
 	        table.setHeaderRows(3);
@@ -119,9 +134,9 @@ public class RelatorioBean implements Serializable {
 	        table.getDefaultCell().setBackgroundColor(GrayColor.GRAYWHITE);
 	        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 	        
-			FrequenciaDAO frequenciaDAO = new FrequenciaDAO();
+			/*FrequenciaDAO frequenciaDAO = new FrequenciaDAO();
 			
-			alu.setListFrequencia(frequenciaDAO.buscar(Frequencia.QUERY_SEARCH_FREQ_ALU, alu.getAlucodigo()));
+			alu.setListFrequencia(frequenciaDAO.buscar(Frequencia.QUERY_SEARCH_FREQ_ALU, alu.getAlucodigo()));*/
 			
 			SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
 			
@@ -274,6 +289,22 @@ public class RelatorioBean implements Serializable {
 
 	public void setListAluno(List<Aluno> listAluno) {
 		this.listAluno = listAluno;
+	}
+
+	public List<Disciplina> getListDisciplina() {
+		return listDisciplina;
+	}
+
+	public void setListDisciplina(List<Disciplina> listDisciplina) {
+		this.listDisciplina = listDisciplina;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}
 
 }

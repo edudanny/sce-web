@@ -47,6 +47,9 @@ public class Turma implements Serializable {
 	
 	@OneToMany(mappedBy = "turma")
     private List<Matricula> listMatricula;
+	
+	@Column(nullable = false)
+	private boolean turstatus;
 
 	public Integer getTurcodigo() {
 		return turcodigo;
@@ -94,6 +97,14 @@ public class Turma implements Serializable {
 
 	public void setListMatricula(List<Matricula> listMatricula) {
 		this.listMatricula = listMatricula;
+	}
+
+	public boolean isTurstatus() {
+		return turstatus;
+	}
+
+	public void setTurstatus(boolean turstatus) {
+		this.turstatus = turstatus;
 	}
 
 	@Override

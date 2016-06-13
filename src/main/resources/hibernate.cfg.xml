@@ -23,7 +23,7 @@
 		
 		<!-- Mostra as SQLs Geradas -->
 		<property name="show_sql">true</property>
-		 <property name="format_sql">true</property>
+		<property name="format_sql">true</property>
 		
 		<!-- Cria as tabelas do banco de dados -->
 		<property name="hbm2ddl.auto">validate</property>

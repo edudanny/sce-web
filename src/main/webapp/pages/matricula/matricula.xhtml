@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+					  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	template="/pages/template/modelo.xhtml"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<ui:define name="conteudo">
+		<section class="content-header">
+		<h1>Matricular</h1>
+		<ol class="breadcrumb">
+			<li><a href="#"><i class="fa fa-dashboard"> </i> Matriculas</a></li>
+			<li class="active">Matricular</li>
+		</ol>
+		</section>
+
+		<section class="content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab_1" data-toggle="tab">Dados do Responsável</a>
+							</li>
+							<li>
+								<a href="#tab_2" data-toggle="tab">Dados do Endereço</a>
+							</li>
+						</ul>
+						<h:form id="formResponsavel">
+							<div class="tab-content" style="height: 240px;">
+								<div class="tab-pane active" id="tab_1">
+									<div class="col-xs-12">
+										<label>Nome</label>
+										<h:inputText value="#{matricularBean.responsavel.resnome}" id="nome"
+													 styleClass="form-control-sce" pt:placeholder="Nome responsavel"/>
+									</div>								
+                      			
+                      				<br /><br /><br /><br /><br />
+
+                      				<div class="col-xs-2">
+										<label>CPF</label>
+								    	<h:inputText value="#{matricularBean.responsavel.rescpf}" id="cpf"
+								    				 styleClass="form-control-sce" pt:placeholder="999.999.999-99"/>
+									</div>
+                      			                    			
+                      				<div class="col-xs-2">
+										<label>RG</label>
+								    	<h:inputText value="#{matricularBean.responsavel.resrg}" pt:placeholder="00000000" 
+								    				 styleClass="form-control-sce" id="rg" />
+									</div>
+								</div>
+								
+								<div class="tab-pane" id="tab_2">
+									<div class="col-xs-2">
+										<label>CEP</label>
+										<h:inputText value="#{matricularBean.endereco.endcep}" styleClass="form-control-sce"
+						    				 	 		 pt:placeholder="99999-110" id="cep"/>
+						    		</div>
+						    		
+						    		<div class="col-xs-8">
+										<label>Bairro</label>
+										<h:inputText value="#{matricularBean.endereco.endbairro}" pt:placeholder="Bairro" 
+						    		 		 		 styleClass="form-control-sce" id="bairro"/>
+									</div>
+									
+									<div class="col-xs-2">
+										<label>Rua</label>
+										<h:inputText value="#{matricularBean.endereco.endrua}" pt:placeholder="Rua" 
+						    			 	 		 styleClass="form-control-sce" id="rua"/>
+									</div>
+								
+									<br /><br /><br /><br /><br />
+								
+									<div class="col-xs-2">
+										<label>Número</label>
+										<h:inputText value="#{matricularBean.endereco.endnumero}" pt:placeholder="Número"
+						    		 		 		 styleClass="form-control-sce" id="numero"/>
+									</div>
+									
+									<div class="col-xs-6">
+										<label>Complemento</label>
+										<h:inputText value="#{matricularBean.endereco.endcomplemento}" id="complemento"
+						    		 		 		 styleClass="form-control-sce" pt:placeholder="Complemento" />
+									</div>
+									
+									<div class="col-xs-2">
+										<label>Celular</label>
+											<h:inputText value="#{matricularBean.telCelular}" styleClass="form-control-sce" 
+														 maxlength="9" pt:placeholder="9999-9999"/>
+									</div>
+											
+									<div class="col-xs-2">
+										<label>Residencial</label>
+										<h:inputText value="#{matricularBean.telResidencial}" styleClass="form-control-sce" 
+													 maxlength="9" pt:placeholder="9999-9999"/>
+									</div>
+									
+									<br /><br /><br /><br />
+					    			
+					    			<div class="col-xs-2" style="margin-left: 908px">
+					    				<h:commandButton class="btn btn-block btn-primary" value="Salvar" 
+													 action="#{matricularBean.salvarResponsavel}"/>
+					    			</div>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+			</div>
+			
+			<h:form id="formAluno">
+				<ui:repeat var="alu" value="#{matricularBean.listAluno}">
+					<div class="box" style="height: 390px;">
+						<div class="box-header with-border">
+							<h3 class="box-title">Aluno</h3>
+							<div class="box-tools pull-right">
+								<!-- botão minimizar -->
+	                			<button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" 
+	                					title="Remover">
+	                				<i class="fa fa-times"></i>
+	                			</button>
+	              			</div>
+	            		</div>
+		            	<div class="box-body">
+		            		<div class="col-xs-12">
+									<label>Nome</label>
+									<h:inputText value="#{alu.alunome}" id="nomeAluno" styleClass="form-control-sce" 
+					    					 	 pt:placeholder="Nome Aluno"/>
+							</div>
+							
+							<br /><br /><br /><br />
+								
+							<div class="col-xs-6">
+					    		<label>Sexo</label>
+					    		<h:selectOneRadio layout="pageDirection" value="#{alu.alusexo}" styleClass="minimal">
+					    			<f:selectItem itemValue="0" itemLabel="Masculino" />
+					    			<f:selectItem itemValue="1" itemLabel="Feminino"/>
+					    		</h:selectOneRadio>
+							</div>
+							
+							<div class="col-xs-6">
+								<label>Status</label>
+								<h:selectOneRadio layout="pageDirection" value="#{alu.alustatus}"  styleClass="minimal">
+									<f:selectItem itemValue="true" itemLabel="Ativo" />
+									<f:selectItem itemValue="false" itemLabel="Inativo" />
+								</h:selectOneRadio>
+							</div>
+							
+							<br /><br /><br /><br /><br />
+							
+							<div class="col-xs-2">
+					    		<label>Data de Nascimento</label>
+					    		<p:inputMask mask="99/99/9999" value="#{alu.aludtnas}" styleClass="form-control-sce"/>
+							</div>
+								
+							<div class="col-xs-4">
+			    				<label>Ano (Série)</label>
+								<h:selectOneMenu id="ano" styleClass="form-control" 
+												 value="#{matricularBean.turma.anoLetivo}"
+												 converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemValue="" itemLabel=" -- Selecione -- "/>
+									<f:selectItems value="#{matricularBean.listAnoLetivo}" var="ano" itemValue="#{ano}" 
+										   		   itemLabel="#{ano.anonome}"/>
+									<f:ajax event="change" execute="ano" listener="#{matricularBean.listenerCarregarTurma}"
+											render="turma"/>
+								</h:selectOneMenu>
+			    			</div>
+			    			
+			    			<div class="col-xs-4">
+			    				<label>Turma</label>
+								<h:selectOneMenu id="turma" styleClass="form-control" value="#{matricularBean.turma}"
+												 converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemValue="" itemLabel=" -- Selecione -- "/>
+									<f:selectItems value="#{matricularBean.listTurma}" var="turma" itemValue="#{turma}" 
+										   		   itemLabel="#{turma.turnome}"/>
+								</h:selectOneMenu>
+			    			</div>
+			    			
+			    			<div class="col-xs-2">
+			    				<label>Parentesco</label>
+								<h:selectOneMenu id="parent" styleClass="form-control" value="#{matricularBean.aluno.aluparentesco}"
+												 converter="omnifaces.SelectItemsConverter">
+									<f:selectItem itemValue="filho(a)" itemLabel="Filho(a)"/>
+									<f:selectItem itemValue="sobrinho(a)" itemLabel="Sobrinho(a)"/>
+									<f:selectItem itemValue="neto(a)" itemLabel="Neto(a)"/>
+									<f:selectItem itemValue="outros" itemLabel=" Outros"/>
+									
+								</h:selectOneMenu>
+			    			</div>
+			    			
+			    			<br /><br /><br /><br />
+								
+							<div class="col-xs-2" style="margin-left: 894px">
+								<h:commandButton styleClass="btn btn-block btn-primary" value="Salvar" 
+					    						 action="#{matricularBean.salvarAluno(alu)}" />
+							</div>
+		            	</div>
+		          	</div>
+				</ui:repeat>
+			</h:form>
+			
+			<h:form id="formSalvar">				
+				<h:commandButton styleClass="btn btn-block btn-primary" value="Confirmar" 
+				    			 action="#{matricularBean.salvar}" style="width: 14%; margin-left: 84%;"/>
+				
+				<h:commandButton styleClass="btn btn-block btn-primary" value="Aicionar" 
+								 action="#{matricularBean.addAluno}" style="width: 14%; margin-left: 69%; margin-top: -34px;"/>
+			</h:form>
+			
+			<br /><br />
+		</section>
+	</ui:define>
+</ui:composition>

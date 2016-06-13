@@ -68,7 +68,12 @@
 							</f:facet>
 							<h:outputText value="#{prof.habilitacao.prohabnome}"></h:outputText>
 						</p:column>
-						
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Status"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{prof.prostatus ? 'Ativo' : 'Inativo'}"></h:outputText>
+						</p:column>
 						<p:column width="200">
 							<f:facet name="header">
 								<h:outputText value="Ações"/>

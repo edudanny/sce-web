@@ -50,6 +50,9 @@ public class Professor implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "proprohabcodigo", referencedColumnName = "prohabcodigo")
 	private Habilitacao habilitacao;
+	
+	@Column(nullable = false)
+	private boolean prostatus;
 
 	public Integer getProcodigo() {
 		return procodigo;
@@ -105,6 +108,14 @@ public class Professor implements Serializable {
 
 	public void setUsuariosList(List<Usuario> usuariosList) {
 		this.usuariosList = usuariosList;
+	}
+
+	public boolean isProstatus() {
+		return prostatus;
+	}
+
+	public void setProstatus(boolean prostatus) {
+		this.prostatus = prostatus;
 	}
 
 	@Override

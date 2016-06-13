@@ -53,6 +53,9 @@ public class MatricularBean implements Serializable {
 	private List<Turma> listTurma;
 	private Turma turma;
 	
+	private String telResidencial;
+	private String telCelular;
+	
 	public String listar(){
 		novo();
 		try {
@@ -86,10 +89,6 @@ public class MatricularBean implements Serializable {
 	
 	public String salvar(){
 		try {
-			listAluno = new ArrayList<Aluno>();
-			listResponsavel = new ArrayList<Responsavel>();
-			listResponsavelAux = new ArrayList<Responsavel>();
-			listTelefones = new ArrayList<Telefone>();
 			
 			listar();
 			
@@ -112,10 +111,19 @@ public class MatricularBean implements Serializable {
 		
 		TelefoneDAO telefoneDAO = new TelefoneDAO();
 		
-		for (Telefone tel : listTelefones) {
-			tel.setTelrescodigo(responsavel);
-			telefoneDAO.salvar(tel);
-		}
+		
+		Telefone telResidencial = new Telefone();
+		Telefone telCelular = new Telefone();
+		
+		telResidencial.setTelnumero(getTelResidencial());
+		telResidencial.setTelrescodigo(responsavel);
+		telefoneDAO.salvar(telResidencial);
+				
+		telCelular.setTelnumero(getTelCelular());
+		telCelular.setTelrescodigo(responsavel);
+		telefoneDAO.salvar(telCelular);
+		
+		addAluno();
 		
 		System.out.println("SALVO RESPONSAVEL");
 	}
@@ -163,13 +171,14 @@ public class MatricularBean implements Serializable {
 	public void novo(){
 		responsavel = new Responsavel();
 		listResponsavel = new ArrayList<Responsavel>();
+		
 		pesquisa = new ArrayList<Responsavel>();
 		listResponsavelAux = new ArrayList<Responsavel>();
+		
 		listAluno = new ArrayList<Aluno>();
 		endereco = new Endereco();
 		
-		listTelefones = new ArrayList<Telefone>();
-		
+		listTelefones = new ArrayList<Telefone>();		
 		listTelefones.add(new Telefone());
 		listTelefones.add(new Telefone());
 		
@@ -183,8 +192,9 @@ public class MatricularBean implements Serializable {
 	public String novaMatricula(){
 		responsavel = new Responsavel();
 		
-		addAluno();
-		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
+		//addAluno();
+		//return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
+		return "/pages/matricula/matricula.xhtml?faces-redirect=true";
 	}
 	
 	public String cancelarCadastro(){
@@ -208,7 +218,8 @@ public class MatricularBean implements Serializable {
 		AlunoDAO alunoDAO = new AlunoDAO();
 		listAluno = alunoDAO.buscar(Aluno.QUERY_SEARCH_ALU_RES, responsavel.getRescodigo());		
 		
-		return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
+		//return "/pages/matricula/novaMatricula.xhtml?faces-redirect=true";
+		return "/pages/matricula/matricula.xhtml?faces-redirect=true";
 	}
 	
 	public void listenerCarregarTurma() {
@@ -293,6 +304,22 @@ public class MatricularBean implements Serializable {
 
 	public void setTurma(Turma turma) {
 		this.turma = turma;
+	}
+
+	public String getTelResidencial() {
+		return telResidencial;
+	}
+
+	public void setTelResidencial(String telResidencial) {
+		this.telResidencial = telResidencial;
+	}
+
+	public String getTelCelular() {
+		return telCelular;
+	}
+
+	public void setTelCelular(String telCelular) {
+		this.telCelular = telCelular;
 	}
 
 }

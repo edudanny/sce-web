@@ -61,7 +61,15 @@
 			    				 id="sala"
 			    				 />
 			    	<h:message for="sala" style="color: red"/>
-				</div>				 
+				</div>		
+				
+				<div class="form-group">
+					<label>Status</label>
+					<h:selectOneRadio layout="pageDirection" value="#{turmaBean.turma.turstatus}" styleClass="minimal">
+						<f:selectItem itemValue="true" itemLabel="Ativo" />
+						<f:selectItem itemValue="false" itemLabel="Inativo" />
+					</h:selectOneRadio>
+				</div>		 
 
 			    <div class="modal-footer-sce">
 			        <h:commandButton class="btn btn-primary-sce" value="Salvar" 

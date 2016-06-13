@@ -16,7 +16,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Lista de Habilitações
+				Lista de Matriculas
 			</h1>
 			<ol class="breadcrumb">
 				<li>
@@ -25,7 +25,7 @@
 						Início
 					</a>
 				</li>
-				<li class="active">Habilitação</li>
+				<li class="active">Matriculas</li>
 			</ol>
 		</section>
 		<!-- Main content -->
@@ -68,12 +68,6 @@
 							</f:facet>
 							<h:outputText value="#{res.resrg}"></h:outputText>
 						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Parentesco"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{res.resparentesco}"></h:outputText>
-						</p:column>
 						<p:column width="200">
 							<f:facet name="header">
 								<h:outputText value="Ações"/>
@@ -90,7 +84,7 @@
 						</p:column>
 					</p:dataTable>
 					
-					<h:commandButton class="btn btn-primary-sce-novo" value="Matricular" 
+					<h:commandButton class="btn btn-primary-sce-novo" value="Novo" 
 									 action="#{matricularBean.novaMatricula}" style="margin-left: 91%"/>
 			    
 				</div>

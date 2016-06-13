@@ -13,7 +13,6 @@ import br.com.tcc.dao.AnoLetivoDAO;
 import br.com.tcc.dao.TurmaDAO;
 import br.com.tcc.model.Aluno;
 import br.com.tcc.model.AnoLetivo;
-import br.com.tcc.model.Matricula;
 import br.com.tcc.model.Turma;
 
 @SuppressWarnings("serial")
@@ -26,12 +25,12 @@ public class TurmaBean implements Serializable {
 	private List<Turma> pesquisa;
 	private List<Turma> listTurmaAux;
 	
-	private List<Turma> listTurmaSalvar;
+	//private List<Turma> listTurmaSalvar;
 	
 	private List<AnoLetivo> listAnoLetivo;
 	private AnoLetivo anoLetivo = new AnoLetivo();
 	
-	private List<Matricula> listMatricula = new ArrayList<Matricula>();
+	//private List<Matricula> listMatricula = new ArrayList<Matricula>();
 	
 	private List<Aluno> listAluno = new ArrayList<Aluno>();
 	
@@ -65,10 +64,14 @@ public class TurmaBean implements Serializable {
 	}
 	
 	public String salvar(){
-		listTurmaSalvar = new ArrayList<Turma>();
+		//listTurmaSalvar = new ArrayList<Turma>();
 		try {			
 			TurmaDAO turmaDAO = new TurmaDAO();
-			turmaDAO.merge(turma);
+			if (turma.getTurcodigo() != null) {
+				turmaDAO.editar(turma);
+			} else {
+				turmaDAO.salvar(turma);
+			}
 			listar();			
 			return "/pages/turma/listTurma.xhtml?faces-redirect=true";
 			
@@ -82,7 +85,7 @@ public class TurmaBean implements Serializable {
 	public void excluir(Turma turma){
 		try {
 			TurmaDAO turmaDAO = new TurmaDAO();
-			turmaDAO.excluir(turma);
+			turmaDAO.editar(turma);
 			listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir a turma");

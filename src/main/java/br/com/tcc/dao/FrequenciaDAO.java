@@ -4,9 +4,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
-import br.com.tcc.model.Aluno;
 import br.com.tcc.model.Frequencia;
-import br.com.tcc.model.Turma;
 import br.com.tcc.utils.HibernateUtil;
 
 public class FrequenciaDAO extends GenericDAO<Frequencia> {

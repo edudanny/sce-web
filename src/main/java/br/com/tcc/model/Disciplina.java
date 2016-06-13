@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +27,9 @@ public class Disciplina implements Serializable {
 	@OneToMany(mappedBy = "mindiscodigo")
     private List<Ministra> listMinistra;
 	
+	@Column(nullable = false)
+	private boolean disstatus;
+	
 	public void setDiscodigo(Integer discodigo) {
 		this.discodigo= discodigo;
 	}
@@ -41,6 +43,22 @@ public class Disciplina implements Serializable {
 	}
 	public String getDisnome() {
 		return this.disnome;
+	}
+
+	public List<Ministra> getListMinistra() {
+		return listMinistra;
+	}
+
+	public void setListMinistra(List<Ministra> listMinistra) {
+		this.listMinistra = listMinistra;
+	}
+
+	public boolean isDisstatus() {
+		return disstatus;
+	}
+
+	public void setDisstatus(boolean disstatus) {
+		this.disstatus = disstatus;
 	}
 
 	@Override

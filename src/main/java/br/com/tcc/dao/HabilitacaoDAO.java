@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
-import br.com.tcc.model.Endereco;
 import br.com.tcc.model.Habilitacao;
 import br.com.tcc.utils.HibernateUtil;
 

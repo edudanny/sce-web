@@ -29,6 +29,9 @@ public class Secretaria implements Serializable{
     
     @OneToMany(mappedBy = "secretaria")
     private List<Matricula> listMatricula;
+    
+    @Column(nullable = false)
+	private boolean secstatus;
 	
 	public Integer getSeccodigo(){
 		return this.seccodigo;
@@ -60,6 +63,14 @@ public class Secretaria implements Serializable{
 
 	public void setListMatricula(List<Matricula> listMatricula) {
 		this.listMatricula = listMatricula;
+	}
+
+	public boolean isSecstatus() {
+		return secstatus;
+	}
+
+	public void setSecstatus(boolean secstatus) {
+		this.secstatus = secstatus;
 	}
 
 }

@@ -33,8 +33,6 @@ public class ProfessorBean implements Serializable {
 	private List<Telefone> listTelefones;
 	private Telefone telefone;
 	
-	private boolean cadastrando;
-	
 	
 	public String listar(){
 		listTelefones = new ArrayList<Telefone>();
@@ -92,7 +90,11 @@ public class ProfessorBean implements Serializable {
 			
 			for (Telefone tel : listTelefones) {
 				tel.setTelprocodigo(professor);
-				telefoneDAO.merge(tel);
+				if (tel.getTelcodigo() == null) {
+					telefoneDAO.salvar(tel);
+				} else {
+					telefoneDAO.editar(tel);
+				}
 			}
 			
 			listar();
@@ -115,7 +117,7 @@ public class ProfessorBean implements Serializable {
 			professor.setListTelefone(listTelefones);
 			
 			ProfessorDAO professorDAO = new ProfessorDAO();
-			professorDAO.excluir(professor);
+			professorDAO.merge(professor);
 			listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir a habilitação");
@@ -152,8 +154,6 @@ public class ProfessorBean implements Serializable {
 		listHabilitacao = new ArrayList<Habilitacao>();
 		HabilitacaoDAO habilitacaoDAO = new HabilitacaoDAO();
 		listHabilitacao = habilitacaoDAO.listar();
-		
-		cadastrando = true;
 		
 		return "/pages/professor/professor.xhtml?faces-redirect=true";
 	}
@@ -199,14 +199,6 @@ public class ProfessorBean implements Serializable {
 
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
-	}
-
-	public boolean isCadastrando() {
-		return cadastrando;
-	}
-
-	public void setCadastrando(boolean cadastrando) {
-		this.cadastrando = cadastrando;
 	}
 
 	public Habilitacao getHabilitacao() {

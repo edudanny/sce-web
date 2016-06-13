@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Order;
 
 import br.com.tcc.model.Endereco;
-import br.com.tcc.model.Frequencia;
 import br.com.tcc.utils.HibernateUtil;
 
 public class EnderecoDAO extends GenericDAO<Endereco> {

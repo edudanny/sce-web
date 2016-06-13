@@ -10,9 +10,7 @@ import javax.faces.bean.SessionScoped;
 import org.omnifaces.util.Messages;
 
 import br.com.tcc.dao.DisciplinaDAO;
-import br.com.tcc.dao.HabilitacaoDAO;
 import br.com.tcc.model.Disciplina;
-import br.com.tcc.model.Habilitacao;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -56,7 +54,11 @@ public class DisciplinaBean implements Serializable {
 	public String salvar(){
 			try {
 				DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
-				disciplinaDAO.merge(disciplina);
+				if (disciplina.getDiscodigo() != null) {
+					disciplinaDAO.editar(disciplina);
+				} else {
+					disciplinaDAO.salvar(disciplina);
+				}
 				listar();
 				
 				return "/pages/disciplina/listDisciplinas.xhtml?faces-redirect=true";
@@ -72,7 +74,7 @@ public class DisciplinaBean implements Serializable {
 		
 		try {
 			DisciplinaDAO disciplinaDAO = new DisciplinaDAO();			
-			disciplinaDAO.excluir(disciplina);
+			disciplinaDAO.editar(disciplina);
 			listar();
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar excluir a disciplina");

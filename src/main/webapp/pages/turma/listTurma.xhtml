@@ -68,6 +68,12 @@
 							</f:facet>
 							<h:outputText value="#{tur.anoLetivo.anonome}"></h:outputText>
 						</p:column>
+						<p:column width="10%">
+							<f:facet name="header">
+								<h:outputText value="Status"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{tur.turstatus ? 'Ativo' : 'Inativo'}"></h:outputText>
+						</p:column>
 						<p:column width="200">
 							<f:facet name="header">
 								<h:outputText value="Ações"/>

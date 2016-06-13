@@ -8,13 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+@NamedQueries({
+	@NamedQuery(name = Habilitacao.QUERY_SEARCH_ATIVO_INATVO, 
+				query = "select h from Habilitacao h where h.prohabstatus = :objeto "
+						+ "or h.prohabstatus = :obj order by h.prohabcodigo asc ")
+})
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name="prohabilitacoes")
 public class Habilitacao implements Serializable {
+	
+	public static final String QUERY_SEARCH_ATIVO_INATVO = "Habilitacao.SearchAtivoInativo";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -32,6 +42,9 @@ public class Habilitacao implements Serializable {
 	
 	@OneToMany(mappedBy = "habilitacao")
     private List<Professor> professores;
+	
+	@Column(nullable = false)
+	private boolean prohabstatus;
 	
 	public Integer getProhabcodigo() {
 		return this.prohabcodigo;
@@ -71,6 +84,14 @@ public class Habilitacao implements Serializable {
 
 	public void setProhabfundamental(boolean prohabfundamental) {
 		this.prohabfundamental = prohabfundamental;
+	}
+	
+	public boolean isProhabstatus() {
+		return prohabstatus;
+	}
+
+	public void setProhabstatus(boolean prohabstatus) {
+		this.prohabstatus = prohabstatus;
 	}
 
 	@Override

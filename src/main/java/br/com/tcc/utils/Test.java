@@ -1,34 +1,11 @@
 package br.com.tcc.utils;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.com.tcc.dao.AlunoDAO;
-import br.com.tcc.dao.AnoLetivoDAO;
 import br.com.tcc.dao.FrequenciaDAO;
-import br.com.tcc.dao.MatriculaDAO;
 import br.com.tcc.model.Aluno;
-import br.com.tcc.model.AnoLetivo;
 import br.com.tcc.model.Frequencia;
-import br.com.tcc.model.Matricula;
-import br.com.tcc.model.Telefone;
-
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.GrayColor;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 
 public class Test {
 	
