@@ -34,7 +34,7 @@ public class HabilitacaoBean implements Serializable {
 		
 		//params[1] = "2";
 		params[0] = "1";
-		params[1] = "1";
+		//params[1] = "1";
 		
 		for (int i = 0; i < params.length; i++) {
 			parametros.add(params[i]);
