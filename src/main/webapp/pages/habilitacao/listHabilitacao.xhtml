@@ -42,8 +42,7 @@
 								 
 					</h:inputText>
 					
-					<h:selectManyCheckbox layout="lineDirection" value="#{habilitacaoBean.params}">
-   						<f:selectItem itemValue="1" itemLabel="Ativo"  />
+					<h:selectManyCheckbox layout="lineDirection" value="#{habilitacaoBean.param}">
    						<f:selectItem itemValue="0" itemLabel="Inativo" />
    						
    						<f:ajax listener="#{habilitacaoBean.pesquisarPorStatus}" event="click" 
@@ -92,7 +91,7 @@
 								</h:commandLink>
 								<h:commandLink  onclick="return confirm('Tem certeza que deseja inativar?')"
 												actionListener="#{habilitacaoBean.excluir(hab)}">
-									<h:graphicImage url="/resources/img/delete_32x32.png" height="25" width="25" title="Clique para Excluir" />
+									<h:graphicImage url="/resources/img/delete_32x32.png" height="25" width="25" title="Clique para Inativar" />
 								</h:commandLink>
 							</h:commandLink>
 						</p:column>

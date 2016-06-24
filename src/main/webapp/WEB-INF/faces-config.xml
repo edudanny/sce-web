@@ -4,5 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
+    
+    <converter>
+    	<converter-id>converter.CpfConverter</converter-id>
+     	<converter-class>br.com.tcc.utils.CpfConverter</converter-class>
+    </converter>
+    
+    <validator>
+    	<validator-id>converter.CpfValidator</validator-id>
+     	<validator-class>br.com.tcc.utils.CpfValidator</validator-class>
+    </validator>
 
 </faces-config>

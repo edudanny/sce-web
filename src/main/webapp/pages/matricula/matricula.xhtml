@@ -46,8 +46,13 @@
 
                       				<div class="col-xs-2">
 										<label>CPF</label>
-								    	<h:inputText value="#{matricularBean.responsavel.rescpf}" id="cpf"
-								    				 styleClass="form-control-sce" pt:placeholder="999.999.999-99"/>
+								    	<p:inputMask pt:placeholder="999.999.999-99" mask="999.999.999-99" 
+								    				 value="#{matricularBean.responsavel.rescpf}" styleClass="form-control-sce">
+								    	
+								    		<f:converter converterId="converter.CpfConverter"/>
+								    	
+								    	</p:inputMask>
+								    	<h:messages />
 									</div>
                       			                    			
                       				<div class="col-xs-2">
@@ -60,8 +65,8 @@
 								<div class="tab-pane" id="tab_2">
 									<div class="col-xs-2">
 										<label>CEP</label>
-										<h:inputText value="#{matricularBean.endereco.endcep}" styleClass="form-control-sce"
-						    				 	 		 pt:placeholder="99999-110" id="cep"/>
+						    			<p:inputMask pt:placeholder="99999-99" mask="99999-99" 
+								    				 value="#{matricularBean.endereco.endcep}" styleClass="form-control-sce"/>
 						    		</div>
 						    		
 						    		<div class="col-xs-8">
@@ -92,14 +97,14 @@
 									
 									<div class="col-xs-2">
 										<label>Celular</label>
-											<h:inputText value="#{matricularBean.telCelular}" styleClass="form-control-sce" 
-														 maxlength="9" pt:placeholder="9999-9999"/>
+											<p:inputMask pt:placeholder="(99)9999-9999" mask="(99)9999-9999" 
+								    				 value="#{matricularBean.telCelular}" styleClass="form-control-sce"/>
 									</div>
 											
 									<div class="col-xs-2">
 										<label>Residencial</label>
-										<h:inputText value="#{matricularBean.telResidencial}" styleClass="form-control-sce" 
-													 maxlength="9" pt:placeholder="9999-9999"/>
+										<p:inputMask pt:placeholder="(99)9999-9999" mask="(99)9999-9999" 
+								    				 value="#{matricularBean.telResidencial}" styleClass="form-control-sce"/>
 									</div>
 									
 									<br /><br /><br /><br />

@@ -5,7 +5,7 @@
 	<artifactId>free</artifactId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
-	<name>SCE</name>
+	<name>Fre-E</name>
 	<description>Frequencia Escolar</description>
 	
 	<!-- Codificação dos caracteres -->
@@ -61,19 +61,9 @@
 			<version>5.1.36</version>
 		</dependency>
 		
-		<!-- JUnit -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-		</dependency>
+		
 		
 		<!-- JSF -->
-		<!-- <dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>javax.faces</artifactId>
-			<version>2.2.12</version>
-		</dependency> -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -94,11 +84,6 @@
 			<version>5.2</version>
 		</dependency>
 		
-		<dependency>
-   			<groupId>org.primefaces.themes</groupId>
-   			<artifactId>all-themes</artifactId>
-   			<version>1.0.10</version>
-  		</dependency>
 		
 		<!-- OmniFaces -->
 		<dependency>
@@ -159,6 +144,12 @@
 			<artifactId>xmlworker</artifactId>
 			<version>5.5.9</version>
 		</dependency>
+		
+		<dependency>
+  			<groupId>com.fasterxml.jackson.datatype</groupId>
+  			<artifactId>jackson-datatype-hibernate4</artifactId>
+  			<version>2.5.3</version>
+		</dependency> 
 		
 	</dependencies>
 </project>

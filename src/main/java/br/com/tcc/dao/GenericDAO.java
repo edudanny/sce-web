@@ -95,17 +95,11 @@ public class GenericDAO<Entidade> {
 		}
 	}
 	
-	
 	@SuppressWarnings("unchecked")
 	public List<Entidade> buscar(String query, Object... params){
 		Session sessao = HibernateUtil.getFabricaDeSessoes().openSession();
 		try{
-			//Query q = sessao.getNamedQuery(query).setString("objeto", params[0].toString());
 			Query q = sessao.getNamedQuery(query).setString("objeto", params[0].toString());
-			/*int i = 1;
-			for (Object o : params) {
-				q.setParameter(i, o);
-			}*/
 			return q.list();
 		} catch (RuntimeException erro){
 			throw erro;
